@@ -1,12 +1,13 @@
-import React from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import Burger from "./Burger";
 
 const NavigationBar = () => {
+  const router = useRouter();
   return (
     <header>
       <Nav>
-        <Logo>QTV</Logo>
+        <Logo onClick={() => router.push("/")}>QTV</Logo>
         <Burger />
       </Nav>
     </header>

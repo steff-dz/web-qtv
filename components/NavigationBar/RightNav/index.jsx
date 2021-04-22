@@ -1,10 +1,12 @@
-import React from "react";
+import Link from "next/link";
 import styled from "styled-components";
 
 const RightNav = ({ open }) => {
   return (
     <Ul open={open}>
-      <li>The Vault</li>
+      <Link href="/vault">
+        <li>The Vault</li>
+      </Link>
       <li>Register</li>
       <li>Login</li>
       <li>Trick Run Mash Up</li>
@@ -31,6 +33,7 @@ const Ul = styled.ul`
     color: white;
     font-size: ${(props) => props.theme.fontSizes[4]};
     font-family: ${(props) => props.theme.textFont};
+    cursor: pointer;
   }
 `;
 
