@@ -30,9 +30,44 @@ const Vault = ({ tricks }) => {
   return (
     <MainWrapper>
       <PageTitle>The Vault of Tricks</PageTitle>
+      <SectionBase>
+        <OptionContainer>
+          <h2>Beginner</h2>
+          <h2>Intermediate</h2>
+          <h2>Advanced</h2>
+        </OptionContainer>
+        <p>Select a level to check out a list of tricks.</p>
+      </SectionBase>
     </MainWrapper>
   );
 };
+
+const SectionBase = styled.section`
+  border: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    font-size: ${(props) => props.theme.fontSizes[5]};
+    font-family: ${(props) => props.theme.textFont};
+  }
+`;
+
+const OptionContainer = styled.div`
+  border: 1px solid lightblue;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  h2 {
+    font-size: ${(props) => props.theme.fontSizes[7]};
+    font-family: ${(props) => props.theme.textFont};
+    font-weight: 400;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
 
 export default Vault;
 
