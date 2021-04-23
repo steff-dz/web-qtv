@@ -1,5 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
+import { PageTitle } from "../components/PageTitle";
+import { MainWrapper } from "../components/MainWrapper";
 import Image from "next/image";
 
 function Home() {
@@ -9,7 +11,7 @@ function Home() {
         <title>Quad Tricks Vault</title>
       </Head>
 
-      <MainBase>
+      <MainWrapper>
         <PageTitle>Quad Tricks Vault</PageTitle>
         <ImageContainer>
           <img src="/images/steff1.jpg" />
@@ -26,19 +28,10 @@ function Home() {
 
           <img src="/images/steff4.jpg" />
         </ImageContainer>
-      </MainBase>
+      </MainWrapper>
     </>
   );
 }
-
-const MainBase = styled.main``;
-
-const PageTitle = styled.h1`
-  font-size: ${(props) => props.theme.fontSizes[8]};
-  font-family: ${(props) => props.theme.titleFont};
-  text-align: center;
-  font-weight: 400;
-`;
 
 const ImageContainer = styled.section`
   margin: 0 auto;

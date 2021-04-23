@@ -1,6 +1,9 @@
 import client from "../client";
-import groq from "groq";
+import styled from "styled-components";
 import { useState, useEffect } from "react";
+import groq from "groq";
+import { PageTitle } from "../components/PageTitle";
+import { MainWrapper } from "../components/MainWrapper";
 
 export async function getStaticProps() {
   const query = groq`
@@ -23,21 +26,22 @@ export async function getStaticProps() {
 
 const Vault = ({ tricks }) => {
   console.log(tricks);
-  //   const [tricksData, setTricksData] = useState("");
-
-  //   useEffect(() => {
-  //     if (tricks.length) {
-  //       setTricksData(tricks);
-  //     } else {
-  //       console.log("no tricks here yet bro");
-  //     }
-  //   }, [tricksData]);
 
   return (
-    <div>
-      <h1>The Vault</h1>
-    </div>
+    <MainWrapper>
+      <PageTitle>The Vault of Tricks</PageTitle>
+    </MainWrapper>
   );
 };
 
 export default Vault;
+
+//   const [tricksData, setTricksData] = useState("");
+
+//   useEffect(() => {
+//     if (tricks.length) {
+//       setTricksData(tricks);
+//     } else {
+//       console.log("no tricks here yet bro");
+//     }
+//   }, [tricksData]);
