@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import groq from "groq";
 import { PageTitle } from "../components/PageTitle";
 import { MainWrapper } from "../components/MainWrapper";
+import { useRouter } from "next/router";
 
 export async function getStaticProps() {
   const query = groq`
@@ -26,10 +27,15 @@ export async function getStaticProps() {
 
 const Vault = ({ tricks }) => {
   const [tricksData, setTricksData] = useState("");
+  const router = useRouter();
 
   function renderTricks() {
     //console.log(tricksData);
-    return tricksData.map((el, index) => <li key={index}>{el.title}</li>);
+    return tricksData.map((el, index) => (
+      <li key={index} onClick={() => router.push(`/trick/${el.title}`)}>
+        {el.title}
+      </li>
+    ));
   }
 
   function filterTricks(e) {
@@ -49,7 +55,7 @@ const Vault = ({ tricks }) => {
           <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
         </OptionContainer>
         {tricksData ? (
-          <ul>{renderTricks()}</ul>
+          <ListBase>{renderTricks()}</ListBase>
         ) : (
           <p>Select a level to check out a list of tricks.</p>
         )}
@@ -59,10 +65,13 @@ const Vault = ({ tricks }) => {
 };
 
 const SectionBase = styled.section`
-  border: 1px solid lightgrey;
+  margin: 0 auto;
+  /* border: 1px solid lightgrey; */
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: lightblue; */
 
   p {
     margin-top: 20rem;
@@ -72,7 +81,7 @@ const SectionBase = styled.section`
 `;
 
 const OptionContainer = styled.div`
-  border: 1px solid lightblue;
+  /* border: 1px solid lightblue; */
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -85,6 +94,20 @@ const OptionContainer = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
+`;
+
+const ListBase = styled.ul`
+  /* background-color: lightgrey; */
+  margin-top: 2rem;
+  list-style-position: inside;
+  align-self: flex-start;
+
+  li {
+    font-size: ${(props) => props.theme.fontSizes[5]};
+    font-family: ${(props) => props.theme.textFont};
+    padding: 0.5rem 0;
+    cursor: pointer;
   }
 `;
 
