@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 export async function getStaticProps() {
   const query = groq`
     {
-        "tricks": *[_type == 'tricks']{title,
+        "tricks": *[_type == 'tricks']{title, slug,
         'categories': categories[]-> title,
         }
     }
@@ -31,8 +31,9 @@ const Vault = ({ tricks }) => {
 
   function renderTricks() {
     //console.log(tricksData);
+    console.log(tricksData);
     return tricksData.map((el, index) => (
-      <li key={index} onClick={() => router.push(`/trick/${el.title}`)}>
+      <li key={index} onClick={() => router.push(`/trick/${el.slug.current}`)}>
         {el.title}
       </li>
     ));
