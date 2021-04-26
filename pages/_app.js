@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationBar />
+        {/* <NavigationBar /> */}
         <Component {...pageProps} />;
       </ThemeProvider>
     </>

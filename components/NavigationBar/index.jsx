@@ -7,7 +7,9 @@ const NavigationBar = () => {
   return (
     <header>
       <Nav>
-        <Logo onClick={() => router.push("/")}>QTV</Logo>
+        <Logo onClick={() => router.push("/")}>
+          <img src="/images/QTV.png" />
+        </Logo>
         <Burger />
       </Nav>
     </header>
@@ -17,18 +19,28 @@ const NavigationBar = () => {
 const Nav = styled.nav`
   width: 100%;
   height: 65px;
+  margin-top: 20px;
   padding: 0 ${(props) => props.theme.spacing[4]};
   display: flex;
-  border-bottom: 1px solid #e6e4e4;
+  /* border-bottom: 1px solid #e6e4e4; */
   justify-content: space-between;
   align-items: center;
+  background-color: #546871;
+
+  color: white;
 `;
 
 const Logo = styled.span`
   /* padding: 15px 0; */
-  font-family: ${(props) => props.theme.titleFont};
-  font-size: ${(props) => props.theme.fontSizes[7]};
-  font-weight: 700;
+  /* font-family: ${(props) => props.theme.titleFont};
+  font-size: 7rem;
+  font-weight: bold; */
+  img {
+    padding-top: 5%;
+    width: 150px;
+  }
+
+  cursor: pointer;
 `;
 
 export default NavigationBar;

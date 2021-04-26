@@ -17,8 +17,8 @@ const Burger = () => {
 };
 
 const StyledBurger = styled.div`
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
   /* position: fixed; */
   /* top: 0px;
   right: 0px; */
@@ -29,8 +29,8 @@ const StyledBurger = styled.div`
 
   div {
     width: 100%;
-    height: 0.5rem;
-    background-color: ${({ open }) => (open ? "#ccc" : "#333")};
+    height: 1rem;
+    background-color: ${({ open }) => (open ? "#ccc" : "#fff")};
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;
