@@ -13,12 +13,23 @@ function Home() {
       </Head>
       <Wrapper>
         <HeroContainer />
+        <MessageContainer>
+          QTV is a place to find all the skating tricks on quad skates under the
+          sun, from beginner to advance.
+        </MessageContainer>
         <NavigationBar />
+
         <MainBase>
           <div>
-            <h1>Quad</h1>
-            <h1>Tricks</h1>
-            <h1>Vault</h1>
+            <span>
+              <h1>QUAD</h1>
+            </span>
+            <span>
+              <h1>TRICKS</h1>
+            </span>
+            <span>
+              <h1>VAULT</h1>
+            </span>
           </div>
         </MainBase>
       </Wrapper>
@@ -30,6 +41,7 @@ const Wrapper = styled.div`
   background-color: #546871;
   height: 100vh;
   overflow: hidden;
+  position: relative;
 `;
 
 const HeroContainer = styled.div`
@@ -44,29 +56,61 @@ const HeroContainer = styled.div`
 
 const MainBase = styled.main`
   /* border: 3px solid pink; */
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; */
   height: 100%;
   width: 40%;
 
   div {
-    padding-top: 20%;
     /* border: 1px solid purple; */
-    width: fit-content;
+    margin-top: 17%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    span {
+      width: 70%;
+      background-color: #4b8990;
+
+      box-shadow: -1px 2px 9px 0px #000000;
+      &:nth-child(2) {
+        background-color: #49aa9c;
+        width: 80%;
+      }
+      &:nth-child(3) {
+        background-color: #6bc996;
+        width: 90%;
+      }
+    }
 
     h1 {
       font-family: ${(props) => props.theme.titleFont};
-      font-size: 12rem;
+      font-size: 7rem;
       color: white;
+      text-align: center;
       /* border: 1px solid orange; */
-      letter-spacing: 8px;
-      line-height: 13rem;
+      /* letter-spacing: 5px;
+      line-height: 10rem; */
       &:nth-child(2) {
-        padding-left: 12%;
       }
     }
   }
+`;
+
+const MessageContainer = styled.p`
+  border: 1px solid black;
+  background-color: rgb(75, 137, 144, 0.7);
+  color: white;
+  width: 30%;
+  height: fit-content;
+  padding: 1.5rem;
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+  font-size: 3rem;
 `;
 
 // const BackgroundImg = styled.div`;

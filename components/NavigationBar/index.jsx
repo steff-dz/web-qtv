@@ -36,7 +36,7 @@ const Logo = styled.span`
   font-size: 7rem;
   font-weight: bold; */
   img {
-    padding-top: 5%;
+    padding-top: 15%;
     width: 150px;
   }
 
