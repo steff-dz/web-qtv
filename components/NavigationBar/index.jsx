@@ -19,7 +19,7 @@ const NavigationBar = () => {
 const Nav = styled.nav`
   width: 100%;
   height: 65px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding: 0 ${(props) => props.theme.spacing[4]};
   display: flex;
   /* border-bottom: 1px solid #e6e4e4; */
@@ -37,7 +37,7 @@ const Logo = styled.span`
   font-weight: bold; */
   img {
     padding-top: 15%;
-    width: 150px;
+    width: 125px;
   }
 
   cursor: pointer;

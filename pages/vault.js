@@ -1,5 +1,6 @@
 import client from "../client";
 import styled from "styled-components";
+import NavigationBar from "../components/NavigationBar";
 import { useState, useEffect } from "react";
 import groq from "groq";
 import { PageTitle } from "../components/PageTitle";
@@ -47,35 +48,49 @@ const Vault = ({ tricks }) => {
   }
 
   return (
-    <MainWrapper>
-      <PageTitle>The Vault of Tricks</PageTitle>
-      <SectionBase>
-        <OptionContainer>
-          <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
-          <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
-          <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
-        </OptionContainer>
-        {tricksData ? (
-          <ListBase>{renderTricks()}</ListBase>
-        ) : (
-          <p>Select a level to check out a list of tricks.</p>
-        )}
-      </SectionBase>
-    </MainWrapper>
+    <>
+      <NavigationBar />
+      <MainWrapper>
+        <PageTitle>The Vault of Tricks</PageTitle>
+        <SectionBase>
+          <OptionContainer>
+            <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
+            <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
+            <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
+          </OptionContainer>
+          <ContentContainer>
+            {tricksData ? (
+              <ListBase>{renderTricks()}</ListBase>
+            ) : (
+              <p>Select a level from above to check out a list of tricks !</p>
+            )}
+          </ContentContainer>
+        </SectionBase>
+      </MainWrapper>
+    </>
   );
 };
 
 const SectionBase = styled.section`
   margin: 0 auto;
   /* border: 1px solid lightgrey; */
-  width: fit-content;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* background-color: lightblue; */
+`;
 
+const ContentContainer = styled.div`
+  margin-top: 2rem;
+  width: 100%;
+  min-height: 60vh;
+  background-color: #49aa9c;
+  box-shadow: -1px 2px 9px 0px #000000;
+  /* overflow: scroll;
+  overflow-x: hidden; */
   p {
-    margin-top: 20rem;
+    padding: 5rem;
     font-size: ${(props) => props.theme.fontSizes[5]};
     font-family: ${(props) => props.theme.textFont};
   }
@@ -100,15 +115,19 @@ const OptionContainer = styled.div`
 
 const ListBase = styled.ul`
   /* background-color: lightgrey; */
-  margin-top: 2rem;
+
   list-style-position: inside;
   align-self: flex-start;
+  padding: 1rem 2rem;
 
   li {
     font-size: ${(props) => props.theme.fontSizes[5]};
     font-family: ${(props) => props.theme.textFont};
     padding: 0.5rem 0;
     cursor: pointer;
+    &:hover {
+      font-weight: 800;
+    }
   }
 `;
 

@@ -1,6 +1,5 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { PageTitle } from "../components/PageTitle";
 import { MainWrapper } from "../components/MainWrapper";
 import Image from "next/image";
 import NavigationBar from "../components/NavigationBar";
@@ -38,7 +37,7 @@ function Home() {
 }
 
 const Wrapper = styled.div`
-  background-color: #546871;
+  /* background-color: #546871; */
   height: 100vh;
   overflow: hidden;
   position: relative;
@@ -74,7 +73,6 @@ const MainBase = styled.main`
     span {
       width: 70%;
       background-color: #4b8990;
-
       box-shadow: -1px 2px 9px 0px #000000;
       &:nth-child(2) {
         background-color: #49aa9c;
