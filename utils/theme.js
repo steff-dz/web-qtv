@@ -1,5 +1,5 @@
 export const theme = {
-  spacing: [0, "0.25", "0,5rem", "1rem", "2rem", "4rem"],
+  spacing: [0, "0.25", "0.5rem", "1rem", "1.5rem", "2rem", "4rem"],
   fontSizes: [
     "0.75rem",
     "1rem",
@@ -13,4 +13,10 @@ export const theme = {
   ],
   titleFont: "Raleway, sans-serif",
   textFont: "Open Sans, sans-serif",
+  grey: "#546871",
+  blue: "#4b8990",
+  teal: "#49aa9c",
+  green: "#6bc996",
+  white: "whitesmoke",
+  black: "black",
 };

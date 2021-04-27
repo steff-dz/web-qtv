@@ -19,9 +19,6 @@ const Burger = () => {
 const StyledBurger = styled.div`
   width: 5rem;
   height: 5rem;
-  /* position: fixed; */
-  /* top: 0px;
-  right: 0px; */
   z-index: 20;
   display: flex;
   justify-content: space-around;

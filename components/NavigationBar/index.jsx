@@ -18,25 +18,18 @@ const NavigationBar = () => {
 
 const Nav = styled.nav`
   width: 100%;
-  height: 65px;
-  /* margin-top: 20px; */
-  padding: 0 ${(props) => props.theme.spacing[4]};
+  padding: 0 ${(props) => props.theme.spacing[5]};
   display: flex;
-  /* border-bottom: 1px solid #e6e4e4; */
   justify-content: space-between;
   align-items: center;
-  background-color: #546871;
+  background-color: ${(props) => props.theme.grey};
 
   color: white;
 `;
 
 const Logo = styled.span`
-  /* padding: 15px 0; */
-  /* font-family: ${(props) => props.theme.titleFont};
-  font-size: 7rem;
-  font-weight: bold; */
   img {
-    padding-top: 15%;
+    padding-top: ${(props) => props.theme.spacing[4]};
     width: 125px;
   }
 

@@ -2,7 +2,7 @@ import client from "../../client";
 import groq from "groq";
 import NavigationBar from "../../components/NavigationBar";
 import BlockContent from "@sanity/block-content-to-react";
-import { MainWrapper } from "../../components/MainWrapper";
+import { Wrapper } from "../../components/Wrapper";
 import { PageTitle } from "../../components/PageTitle";
 import styled from "styled-components";
 
@@ -49,20 +49,24 @@ const TrickPage = ({ trick }) => {
   return (
     <>
       <NavigationBar />
-      <MainWrapper>
-        <PageTitle>{trick && trick.title}</PageTitle>
-        <SectionBase>
-          {trick.mainImage ? (
-            <img src={trick.mainImage.asset.url} />
-          ) : (
-            "no picture here"
-          )}
-          <article>
-            <h2>Description:</h2>
-            <p>{trick && <BlockContent id="descrip" blocks={trick.body} />}</p>
-          </article>
-        </SectionBase>
-      </MainWrapper>
+      <Wrapper>
+        <main>
+          <PageTitle>{trick && trick.title}</PageTitle>
+          <SectionBase>
+            {trick.mainImage ? (
+              <img src={trick.mainImage.asset.url} />
+            ) : (
+              "no picture here"
+            )}
+            <article>
+              <h2>Description:</h2>
+              <p>
+                {trick && <BlockContent id="descrip" blocks={trick.body} />}
+              </p>
+            </article>
+          </SectionBase>
+        </main>
+      </Wrapper>
     </>
   );
 };
@@ -71,12 +75,12 @@ const SectionBase = styled.section`
   display: flex;
   /* flex-direction: column;
   align-items: flex-start; */
-  width: 90%;
+  width: 80%;
   min-height: 60%;
   margin: 0 auto;
   /* border: 1px solid white; */
-  margin-top: 20px;
-  background-color: #49aa9c;
+  margin-top: 30px;
+  background-color: whitesmoke;
   gap: 20px;
   box-shadow: 1px 4px 9px 4px rgba(0, 0, 0, 0.47);
   article {
@@ -92,7 +96,7 @@ const SectionBase = styled.section`
     font-size: ${(props) => props.theme.fontSizes[6]};
     padding: 0 1rem;
     letter-spacing: 2px;
-    line-height: 35px;
+    line-height: 40px;
   }
 
   img {

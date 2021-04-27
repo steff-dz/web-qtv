@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { MainWrapper } from "../components/MainWrapper";
+import { Wrapper } from "../components/Wrapper";
 import Image from "next/image";
 import NavigationBar from "../components/NavigationBar";
 
@@ -10,7 +10,7 @@ function Home() {
       <Head>
         <title>Quad Tricks Vault</title>
       </Head>
-      <Wrapper>
+      <IndexWrapper>
         <HeroContainer />
         <MessageContainer>
           QTV is a place to find all the skating tricks on quad skates under the
@@ -31,22 +31,25 @@ function Home() {
             </span>
           </div>
         </MainBase>
-      </Wrapper>
+      </IndexWrapper>
     </>
   );
 }
 
-const Wrapper = styled.div`
-  /* background-color: #546871; */
-  height: 100vh;
+const IndexWrapper = styled(Wrapper)`
   overflow: hidden;
   position: relative;
 `;
+// const Wrapper = styled.div`
+//   height: 100vh;
+//   overflow: hidden;
+//   position: relative;
+// `;
 
 const HeroContainer = styled.div`
   background-image: url("/images/hero.jpg");
   width: 60%;
-  height: 100%;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
@@ -54,46 +57,34 @@ const HeroContainer = styled.div`
 `;
 
 const MainBase = styled.main`
-  /* border: 3px solid pink; */
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   height: 100%;
   width: 40%;
 
   div {
-    /* border: 1px solid purple; */
     margin-top: 17%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: ${(props) => props.theme.spacing[4]};
 
     span {
       width: 70%;
-      background-color: #4b8990;
+      background-color: ${(props) => props.theme.blue};
       box-shadow: -1px 2px 9px 0px #000000;
       &:nth-child(2) {
-        background-color: #49aa9c;
+        background-color: ${(props) => props.theme.teal};
         width: 80%;
       }
       &:nth-child(3) {
-        background-color: #6bc996;
+        background-color: ${(props) => props.theme.green};
         width: 90%;
       }
-    }
 
-    h1 {
-      font-family: ${(props) => props.theme.titleFont};
-      font-size: 7rem;
-      color: white;
-      text-align: center;
-      /* border: 1px solid orange; */
-      /* letter-spacing: 5px;
-      line-height: 10rem; */
-      &:nth-child(2) {
-      }
+      h1 {
+        font-family: ${(props) => props.theme.titleFont};
+        font-size: ${(props) => props.theme.fontSizes[8]};
+        color: ${(props) => props.theme.white};
+        text-align: center;
     }
   }
 `;

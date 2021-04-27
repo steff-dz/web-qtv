@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const RightNav = ({ open }) => {
   return (
-    <Ul open={open}>
+    <UlBase open={open}>
       <Link href="/vault">
         <li>The Vault</li>
       </Link>
@@ -11,14 +11,14 @@ const RightNav = ({ open }) => {
       <li>Login</li>
       <li>Trick Run Mash Up</li>
       <li>Skater Name Generator</li>
-    </Ul>
+    </UlBase>
   );
 };
 
-const Ul = styled.ul`
+const UlBase = styled.ul`
   list-style: none;
   flex-flow: column nowrap;
-  background-color: rgb(75, 137, 144);
+  background-color: ${(props) => props.theme.blue};
   border-left: 10px solid #3d7075;
   box-shadow: ${({ open }) =>
     open
@@ -31,7 +31,7 @@ const Ul = styled.ul`
   right: 0;
   height: 100vh;
   width: 550px;
-  padding-top: 3.5rem;
+  padding-top: ${(props) => props.theme.spacing[6]}
   transition: transform 0.3s ease-in-out;
 
   li {
@@ -42,7 +42,6 @@ const Ul = styled.ul`
     &:hover {
       font-weight: 800;
     }
-
     cursor: pointer;
   }
 `;

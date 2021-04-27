@@ -4,7 +4,7 @@ import NavigationBar from "../components/NavigationBar";
 import { useState, useEffect } from "react";
 import groq from "groq";
 import { PageTitle } from "../components/PageTitle";
-import { MainWrapper } from "../components/MainWrapper";
+import { Wrapper } from "../components/Wrapper";
 import { useRouter } from "next/router";
 
 export async function getStaticProps() {
@@ -50,29 +50,32 @@ const Vault = ({ tricks }) => {
   return (
     <>
       <NavigationBar />
-      <MainWrapper>
-        <PageTitle>The Vault of Tricks</PageTitle>
-        <SectionBase>
-          <OptionContainer>
-            <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
-            <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
-            <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
-          </OptionContainer>
-          <ContentContainer>
-            {tricksData ? (
-              <ListBase>{renderTricks()}</ListBase>
-            ) : (
-              <p>Select a level from above to check out a list of tricks !</p>
-            )}
-          </ContentContainer>
-        </SectionBase>
-      </MainWrapper>
+      <Wrapper>
+        <main>
+          <PageTitle>The Vault of Tricks</PageTitle>
+          <SectionBase>
+            <OptionContainer>
+              <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
+              <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
+              <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
+            </OptionContainer>
+            <ContentContainer>
+              {tricksData ? (
+                <ListBase>{renderTricks()}</ListBase>
+              ) : (
+                <p>Select a level from above to check out a list of tricks !</p>
+              )}
+            </ContentContainer>
+          </SectionBase>
+        </main>
+      </Wrapper>
     </>
   );
 };
 
 const SectionBase = styled.section`
   margin: 0 auto;
+  margin-top: 30px;
   /* border: 1px solid lightgrey; */
   width: 70%;
   display: flex;
