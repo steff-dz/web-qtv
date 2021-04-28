@@ -19,18 +19,16 @@ export async function getStaticProps({ params }) {
 
   const query = groq`
     *[_type == 'tricks' && slug.current == '${slug}'][0]{
-      title,
-      slug,
-      mainImage{
-        asset->{
-          _id,
-          url
-        }
-      },
-      body,
-      'categories': categories[]-> title,
-
-    }
+        title,
+        slug,
+         mainImage{
+         asset->{
+            _id,
+            url
+          }
+        },
+        body,
+         'categories': categories[]-> title,
   `;
 
   const data = await client.fetch(query);
@@ -44,7 +42,8 @@ export async function getStaticProps({ params }) {
 }
 
 const TrickPage = ({ trick }) => {
-  console.log(trick.mainImage);
+  console.log(trick);
+  //console.log(trick.mainImage);
 
   return (
     <>
@@ -74,12 +73,9 @@ const TrickPage = ({ trick }) => {
 
 const SectionBase = styled.section`
   display: flex;
-  /* flex-direction: column;
-  align-items: flex-start; */
   width: 80%;
   min-height: 60%;
   margin: 0 auto;
-  /* border: 1px solid white; */
   margin-top: 30px;
   background-color: whitesmoke;
   gap: 20px;
@@ -118,4 +114,18 @@ export default TrickPage;
 
 // function urlFor(source) {
 //   return builder.image(source);
+// }
+
+// [0]{
+//   title,
+//   slug,
+//   mainImage{
+//     asset->{
+//       _id,
+//       url
+//     }
+//   },
+//   body,
+//   'categories': categories[]-> title,
+
 // }
