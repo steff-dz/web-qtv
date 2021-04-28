@@ -18,5 +18,5 @@ export const theme = {
   teal: "#49aa9c",
   green: "#6bc996",
   white: "whitesmoke",
-  black: "black",
+  black: "#0e1111",
 };

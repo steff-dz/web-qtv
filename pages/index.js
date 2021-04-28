@@ -61,7 +61,7 @@ const MainBase = styled.main`
   width: 40%;
 
   div {
-    margin-top: 17%;
+    margin-top: 20vh;
     width: 100%;
     display: flex;
     flex-direction: column;

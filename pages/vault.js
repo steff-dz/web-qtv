@@ -31,12 +31,10 @@ const Vault = ({ tricks }) => {
   const router = useRouter();
 
   function renderTricks() {
-    //console.log(tricksData);
-    console.log(tricksData);
     return tricksData.map((el, index) => (
-      <li key={index} onClick={() => router.push(`/trick/${el.slug.current}`)}>
+      <h3 key={index} onClick={() => router.push(`/trick/${el.slug.current}`)}>
         {el.title}
-      </li>
+      </h3>
     ));
   }
 
@@ -59,13 +57,13 @@ const Vault = ({ tricks }) => {
               <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
               <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
             </OptionContainer>
-            <ContentContainer>
+            <ArticleBase>
               {tricksData ? (
-                <ListBase>{renderTricks()}</ListBase>
+                renderTricks()
               ) : (
-                <p>Select a level from above to check out a list of tricks !</p>
+                <p>Select a level from above to check out a list of tricks</p>
               )}
-            </ContentContainer>
+            </ArticleBase>
           </SectionBase>
         </main>
       </Wrapper>
@@ -75,39 +73,57 @@ const Vault = ({ tricks }) => {
 
 const SectionBase = styled.section`
   margin: 0 auto;
-  margin-top: 30px;
-  /* border: 1px solid lightgrey; */
-  width: 70%;
+  margin-top: ${(props) => props.theme.spacing[5]};
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: lightblue; */
 `;
 
-const ContentContainer = styled.div`
-  margin-top: 2rem;
-  width: 100%;
-  min-height: 60vh;
-  background-color: #49aa9c;
-  box-shadow: -1px 2px 9px 0px #000000;
-  /* overflow: scroll;
-  overflow-x: hidden; */
+const ArticleBase = styled.article`
+  margin-top: ${(props) => props.theme.spacing[5]};
+  background-color: rgb(14, 17, 17, 0.2);
+  border-radius: 15px;
+  padding: ${(props) => props.theme.spacing[6]};
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${(props) => props.theme.spacing[5]};
+  justify-content: center;
+
   p {
-    padding: 5rem;
-    font-size: ${(props) => props.theme.fontSizes[5]};
+    font-size: ${(props) => props.theme.fontSizes[6]};
+    color: ${(props) => props.theme.white};
+  }
+
+  h3 {
+    font-size: 4rem;
+    color: ${(props) => props.theme.teal};
     font-family: ${(props) => props.theme.textFont};
+    cursor: pointer;
+
+    :nth-child(even) {
+      padding-top: ${(props) => props.theme.spacing[2]};
+    }
+    :nth-child(odd) {
+      color: ${(props) => props.theme.green};
+      font-size: 5rem;
+    }
+    &:hover {
+      font-weight: 100;
+    }
   }
 `;
 
 const OptionContainer = styled.div`
-  /* border: 1px solid lightblue; */
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: ${(props) => props.theme.spacing[6]};
 
   h2 {
     font-size: ${(props) => props.theme.fontSizes[7]};
     font-family: ${(props) => props.theme.textFont};
+    color: ${(props) => props.theme.black};
     font-weight: 400;
     cursor: pointer;
     &:hover {
@@ -116,32 +132,4 @@ const OptionContainer = styled.div`
   }
 `;
 
-const ListBase = styled.ul`
-  /* background-color: lightgrey; */
-
-  list-style-position: inside;
-  align-self: flex-start;
-  padding: 1rem 2rem;
-
-  li {
-    font-size: ${(props) => props.theme.fontSizes[5]};
-    font-family: ${(props) => props.theme.textFont};
-    padding: 0.5rem 0;
-    cursor: pointer;
-    &:hover {
-      font-weight: 800;
-    }
-  }
-`;
-
 export default Vault;
-
-//   const [tricksData, setTricksData] = useState("");
-
-//   useEffect(() => {
-//     if (tricks.length) {
-//       setTricksData(tricks);
-//     } else {
-//       console.log("no tricks here yet bro");
-//     }
-//   }, [tricksData]);
