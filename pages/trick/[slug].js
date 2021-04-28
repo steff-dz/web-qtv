@@ -44,7 +44,7 @@ export async function getStaticProps({ params }) {
 }
 
 const TrickPage = ({ trick }) => {
-  //console.log(trick.mainImage.asset.url);
+  console.log(trick.mainImage);
 
   return (
     <>
@@ -56,8 +56,9 @@ const TrickPage = ({ trick }) => {
             {trick.mainImage ? (
               <img src={trick.mainImage.asset.url} />
             ) : (
-              "no picture here"
+              <img id="skeleton-pic" src="/images/skates.jpeg" />
             )}
+
             <article>
               <h2>Description:</h2>
               <p>
@@ -83,24 +84,29 @@ const SectionBase = styled.section`
   background-color: whitesmoke;
   gap: 20px;
   box-shadow: 1px 4px 9px 4px rgba(0, 0, 0, 0.47);
-  article {
-    /* border: 1px solid red; */
-  }
-
-  h2 {
-    font-size: ${(props) => props.theme.fontSizes[7]};
-    padding: 1rem 0;
-  }
-
-  p {
-    font-size: ${(props) => props.theme.fontSizes[6]};
-    padding: 0 1rem;
-    letter-spacing: 2px;
-    line-height: 40px;
-  }
 
   img {
     width: 40%;
+  }
+
+  #skeleton-pic {
+    width: 300px;
+    opacity: 0.7;
+  }
+
+  article {
+    padding: ${(props) => props.theme.spacing[5]};
+    h2 {
+      font-size: ${(props) => props.theme.fontSizes[6]};
+      padding: ${(props) => props.theme.spacing[4]};
+    }
+
+    p {
+      font-size: ${(props) => props.theme.fontSizes[5]};
+      padding: 0 ${(props) => props.theme.spacing[3]};
+      letter-spacing: 2px;
+      line-height: 40px;
+    }
   }
 `;
 

@@ -40,11 +40,6 @@ const IndexWrapper = styled(Wrapper)`
   overflow: hidden;
   position: relative;
 `;
-// const Wrapper = styled.div`
-//   height: 100vh;
-//   overflow: hidden;
-//   position: relative;
-// `;
 
 const HeroContainer = styled.div`
   background-image: url("/images/hero.jpg");
@@ -102,74 +97,4 @@ const MessageContainer = styled.p`
   font-size: 3rem;
 `;
 
-// const BackgroundImg = styled.div`;
-//   background-image: url("/images/hero.jpg");
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: top center;
-//   width: 700px;
-//   height: auto;
-// `;
-
-// const SectionBase = styled.section`
-//   display: flex;
-//   width: 100%;
-//   height: 100%;
-//   background-color: #546871;
-
-//   overflow: hidden;
-
-//   #title-container {
-//     width: 40%;
-
-//   }
-
-//   #title-container h1 {
-//     font-family: ${(props) => props.theme.titleFont};
-//     font-size: 8rem;
-//     color: white;
-//   }
-// `;
-
-// const ImageContainer = styled.div`
-//   width: 60%;
-//   background-image: url("/images/hero.jpg");
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: top center;
-//   background-origin: content-box;
-
-//   margin: 0 auto;
-//   padding: 0 10rem;
-//   padding-top: 10px;
-//   column-count: 3;
-//   column-gap: 10px;
-//   column-fill: balance;
-
-//   div {
-//     width: fit-content;
-//     height: fit-content;
-//   }
-
-//   img {
-//     width: 100%;
-//     height: 100%;
-//     object-fit: contain;
-//   }
-//`;
-
 export default Home;
-
-/* <img src="/images/steff1.jpg" />
-
-<img src="/images/ingcat1.jpg" />
-
-<img src="/images/steff3.jpg" />
-
-<img src="/images/ingcat3.jpg" />
-
-<img src="/images/ingcat2.jpg" />
-
-<img src="/images/steff2.jpg" />
-
-<img src="/images/steff4.jpg" /> */
