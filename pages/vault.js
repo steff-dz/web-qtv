@@ -10,8 +10,10 @@ import { useRouter } from "next/router";
 export async function getStaticProps() {
   const query = groq`
     {
-        "tricks": *[_type == 'tricks']{title, slug,
-        'categories': categories[]-> title,
+        "tricks": *[_type == 'tricks']{
+          title, 
+          slug,
+        "categories": categories[]-> title,
         }
     }
     

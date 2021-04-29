@@ -16,53 +16,38 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  //Try and fetch data
 
+  //Try and fetch data
   const query = groq`
-    *[_type == 'tricks' && slug.current == '${slug}'][0]{
-      title,
+    *[_type == 'tricks' && slug.current == '${slug}']{
       slug,
+      title,
+      "mainImage": mainImage{asset->{url}},
       body,
-      trickVideo,
-      mainImage{
-        asset->{
-          url
-        }
-      }
-    }
+      "category": categories[]-> title
+    }[0]
   `;
 
-  //try {
-  const data = await client.fetch(query);
-  //} catch (error) {
-  //console.log(error);
-  //}
+  try {
+    const data = await client.fetch(query);
 
-  //console.log(data);
-  return {
-    revalidate: 60 * 60 * 24,
-    props: {
-      trick: data,
-    },
-  };
+    return {
+      revalidate: 60 * 60 * 24,
+      props: {
+        trick: data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const TrickPage = ({ trick }) => {
-  //console.log(trick);
-  //console.log(trick.mainImage.asset.url);
-  const [thisTrick, setThisTrick] = useState("");
-
-  useEffect(() => {
-    if (trick) {
-      setThisTrick(trick);
-    } else {
-      console.log("no trick yet");
-    }
-  }, [trick]);
-
-  // useEffect(() => {
-  //   console.log("this is our state trick:", thisTrick);
-  // }, [thisTrick]);
+  // if (trick !== undefined) {
+  //   console.log(trick.mainImage, "it is here", trick);
+  // } else {
+  //   console.log("nix");
+  // }
 
   return (
     <>
@@ -71,18 +56,16 @@ const TrickPage = ({ trick }) => {
         <main>
           <PageTitle>{trick && trick.title}</PageTitle>
           <SectionBase>
-            {thisTrick.mainImage ? (
-              <img src={thisTrick.mainImage.asset.url} />
+            {trick ? (
+              <img src={trick.mainImage.asset.url} />
             ) : (
               <img id="skeleton-pic" src="/images/skates.jpeg" />
             )}
             <article>
               <h2>Description:</h2>
-              <p>
-                {thisTrick && (
-                  <BlockContent id="descrip" blocks={thisTrick.body} />
-                )}
-              </p>
+              <span>
+                {trick && <BlockContent id="descrip" blocks={trick.body} />}
+              </span>
             </article>
           </SectionBase>
         </main>
@@ -117,7 +100,7 @@ const SectionBase = styled.section`
       padding: ${(props) => props.theme.spacing[4]};
     }
 
-    p {
+    span {
       font-size: ${(props) => props.theme.fontSizes[5]};
       padding: 0 ${(props) => props.theme.spacing[3]};
       letter-spacing: 2px;
