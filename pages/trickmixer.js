@@ -3,6 +3,7 @@ import styled from "styled-components";
 import NavigationBar from "../components/NavigationBar";
 import { Wrapper } from "../components/Wrapper";
 import { PageTitle } from "../components/PageTitle";
+import Input from "../components/Input";
 
 const TrickMixer = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
@@ -16,7 +17,8 @@ const TrickMixer = () => {
     console.log(selectedLevels);
   }
 
-  function handleInput(e) {
+  const handleInput = (e) => {
+    console.log(e.target.value);
     const choice = e.target.value;
     const exists = selectedLevels.find((e) => e === choice);
     if (exists) {
@@ -25,7 +27,7 @@ const TrickMixer = () => {
     } else {
       setSelectedLevels([...selectedLevels, choice]);
     }
-  }
+  };
 
   return (
     <>
@@ -43,36 +45,30 @@ const TrickMixer = () => {
               others, and do them in any order you want!
             </p>
             <FormBase onSubmit={(e) => testSubmit(e)}>
-              <div>
-                <input
-                  type="checkbox"
-                  id="beginnerlvl"
-                  name="beginnerlvl"
-                  value="beginner"
-                  onChange={(e) => handleInput(e)}
-                />
-                <label htmlFor="beginner">Beginner Level</label>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="intermediatelvl"
-                  name="intermediatelvl"
-                  value="intermediate"
-                  onChange={(e) => handleInput(e)}
-                />
-                <label htmlFor="intermediate">Intermediate Level</label>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="advancedlvl"
-                  name="advancedlvl"
-                  value="advanced"
-                  onChange={(e) => handleInput(e)}
-                />
-                <label htmlFor="advanced">Advanced Level</label>
-              </div>
+              <Input
+                type={"checkbox"}
+                id={"beginnerLvl"}
+                name={"beginnerLvl"}
+                value={"beginner"}
+                title={"Beginner Level"}
+                handleInput={handleInput}
+              />
+              <Input
+                type={"checkbox"}
+                id={"intermediateLvl"}
+                name={"intermediateLvl"}
+                value={"intermediate"}
+                title={"Intermediate Level"}
+                handleInput={handleInput}
+              />
+              <Input
+                type={"checkbox"}
+                id={"advancedLvl"}
+                name={"advancedLvl"}
+                value={"advanced"}
+                title={"Advanced Level"}
+                handleInput={handleInput}
+              />
               <button type="submit">GO</button>
             </FormBase>
           </SectionBase>
@@ -112,13 +108,6 @@ const FormBase = styled.form`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-
-  div {
-    border: 1px solid black;
-    input {
-      width: 30px;
-    }
-  }
 
   button {
     width: 20%;

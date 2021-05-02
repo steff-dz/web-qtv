@@ -33,7 +33,7 @@ const UlBase = styled.ul`
   right: 0;
   height: 100vh;
   width: 550px;
-  padding-top: ${(props) => props.theme.spacing[6]}
+  padding-top: ${(props) => props.theme.spacing[6]};
   transition: transform 0.3s ease-in-out;
 
   li {
