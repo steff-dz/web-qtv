@@ -6,4 +6,5 @@ export const PageTitle = styled.h1`
   color: ${(props) => props.theme.black};
   text-align: center;
   font-weight: 600;
+  letter-spacing: ${(props) => props.theme.spacing[2]};
 `;
