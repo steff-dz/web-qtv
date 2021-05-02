@@ -16,15 +16,13 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-
-  //Try and fetch data
   const query = groq`
     *[_type == 'tricks' && slug.current == '${slug}']{
       slug,
       title,
-      "mainImage": mainImage{asset->{url}},
       body,
-      "category": categories[]-> title
+      "category": categories[]-> title,
+      "image": mainImage{asset->{url}}
     }[0]
   `;
 
@@ -43,12 +41,14 @@ export async function getStaticProps({ params }) {
 }
 
 const TrickPage = ({ trick }) => {
-  // if (trick !== undefined) {
-  //   console.log(trick.mainImage, "it is here", trick);
-  // } else {
-  //   console.log("nix");
-  // }
-
+  function imageHandler() {
+    if (trick.image === null || undefined) {
+      console.log("no image here");
+      return <img id="skeleton-pic" src="/images/skates.jpeg" />;
+    } else {
+      return <img src={trick.image.asset.url} />;
+    }
+  }
   return (
     <>
       <NavigationBar />
@@ -56,11 +56,7 @@ const TrickPage = ({ trick }) => {
         <main>
           <PageTitle>{trick && trick.title}</PageTitle>
           <SectionBase>
-            {trick ? (
-              <img src={trick.mainImage.asset.url} />
-            ) : (
-              <img id="skeleton-pic" src="/images/skates.jpeg" />
-            )}
+            {imageHandler()}
             <article>
               <h2>Description:</h2>
               <span>
