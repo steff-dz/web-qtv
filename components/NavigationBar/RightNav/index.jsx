@@ -9,7 +9,9 @@ const RightNav = ({ open }) => {
       </Link>
       <li>Register</li>
       <li>Login</li>
-      <li>Trick Run Mash Up</li>
+      <Link href="/trickmixer">
+        <li>Trick Mixer</li>
+      </Link>
       <li>Skater Name Generator</li>
     </UlBase>
   );
