@@ -4,25 +4,42 @@ import NavigationBar from "../components/NavigationBar";
 import { Wrapper } from "../components/Wrapper";
 import { PageTitle } from "../components/PageTitle";
 import Input from "../components/Input";
+import client from "../client";
+import groq from "groq";
 
 const TrickMixer = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
+  const [trickData, setTrickData] = useState([]);
 
-  //   useEffect(() => {
-  //     console.log(selectedLevels, "from useEffect");
-  //   }, [selectedLevels]);
+  useEffect(() => {
+    console.log(trickData);
+  }, [trickData]);
 
   function testSubmit(e) {
     e.preventDefault();
     console.log(selectedLevels);
+    //create a fetch call to sanity with the category matching the ones selected
+    const query = groq`
+      *['${selectedLevels[0]}' in tags]{
+        title,
+        slug,
+        tags
+      }
+    
+   
+    `;
+
+    client
+      .fetch(query)
+      .then((data) => setTrickData(data))
+      .catch(console.error);
   }
 
   const handleInput = (e) => {
-    console.log(e.target.value);
     const choice = e.target.value;
+    console.log(choice);
     const exists = selectedLevels.find((e) => e === choice);
     if (exists) {
-      //console.log(exists, "from function");
       setSelectedLevels(selectedLevels.filter((el) => el !== choice));
     } else {
       setSelectedLevels([...selectedLevels, choice]);
@@ -49,7 +66,7 @@ const TrickMixer = () => {
                 type={"checkbox"}
                 id={"beginnerLvl"}
                 name={"beginnerLvl"}
-                value={"beginner"}
+                value={"Beginner"}
                 title={"Beginner Level"}
                 handleInput={handleInput}
               />
@@ -57,7 +74,7 @@ const TrickMixer = () => {
                 type={"checkbox"}
                 id={"intermediateLvl"}
                 name={"intermediateLvl"}
-                value={"intermediate"}
+                value={"Intermediate"}
                 title={"Intermediate Level"}
                 handleInput={handleInput}
               />
@@ -65,7 +82,7 @@ const TrickMixer = () => {
                 type={"checkbox"}
                 id={"advancedLvl"}
                 name={"advancedLvl"}
-                value={"advanced"}
+                value={"Advanced"}
                 title={"Advanced Level"}
                 handleInput={handleInput}
               />
@@ -115,3 +132,9 @@ const FormBase = styled.form`
   }
 `;
 export default TrickMixer;
+
+// `*[_type == "tricks" && 'Beginner' in categories]{
+//   title,
+//   slug,
+//   "category": categories[]-> title,
+// }`

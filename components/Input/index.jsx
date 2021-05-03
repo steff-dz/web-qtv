@@ -25,5 +25,3 @@ const InputContainer = styled.div`
 `;
 
 export default Input;
-
-//onChange={(e) => handleInput(e)}
