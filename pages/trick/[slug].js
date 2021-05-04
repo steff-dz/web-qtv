@@ -21,7 +21,6 @@ export async function getStaticProps({ params }) {
       slug,
       title,
       body,
-      "category": categories[]-> title,
       "image": mainImage{asset->{url}}
     }[0]
   `;

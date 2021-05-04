@@ -13,13 +13,14 @@ export async function getStaticProps() {
         "tricks": *[_type == 'tricks']{
           title, 
           slug,
-        "categories": categories[]-> title,
+          tags
         }
     }
     
     `;
 
   const data = await client.fetch(query);
+  console.log(data);
 
   return {
     props: {
@@ -43,13 +44,13 @@ const Vault = ({ tricks }) => {
   function filterTricks(e) {
     setTricksData("");
     setTricksData(
-      tricks.tricks.filter((el) => el.categories[0] === e.target.innerHTML)
+      tricks.tricks.filter((el) => el.tags[0] === e.target.innerHTML)
     );
   }
 
   return (
     <>
-      <NavigationBar />
+      <NavigationBar />-
       <Wrapper>
         <main>
           <PageTitle>The Vault of Tricks</PageTitle>

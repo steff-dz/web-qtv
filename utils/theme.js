@@ -20,3 +20,5 @@ export const theme = {
   white: "whitesmoke",
   black: "#0e1111",
 };
+
+//be more specific for fontsizes i.e body, buttons, titles, card hearders, etc

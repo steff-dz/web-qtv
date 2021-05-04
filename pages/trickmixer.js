@@ -9,7 +9,7 @@ import groq from "groq";
 
 const TrickMixer = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
-  const [trickData, setTrickData] = useState([]);
+  const [trickData, setTrickData] = useState();
 
   useEffect(() => {
     console.log(trickData);
@@ -19,19 +19,29 @@ const TrickMixer = () => {
     e.preventDefault();
     console.log(selectedLevels);
     //create a fetch call to sanity with the category matching the ones selected
-    const query = groq`
-      *['${selectedLevels[0]}' in tags]{
-        title,
-        slug,
-        tags
+
+    let query = groq`
+      {   
+       "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
+       "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags},
+       "${selectedLevels[2]}": *[_type == "tricks" && "${selectedLevels[2]}" in tags]{title, slug, tags},
       }
-    
-   
-    `;
+      `;
 
     client
       .fetch(query)
-      .then((data) => setTrickData(data))
+      .then((data) => {
+        //console.log("inside the fetch call", data);
+        delete data.undefined;
+        //console.log("new data from fetch call", data);
+
+        let newData = [];
+        Object.entries(data).forEach((el) => newData.push(el));
+        //console.log("this is the new data:", newData);
+        setTrickData(newData);
+
+        //setTrickData([data]);
+      })
       .catch(console.error);
   }
 
@@ -138,3 +148,35 @@ export default TrickMixer;
 //   slug,
 //   "category": categories[]-> title,
 // }`
+
+// let query;
+
+//     if (selectedLevels.length === 3) {
+//       console.log("there are 3 selected");
+//       query = groq`
+//       {
+//         "tricks": *[_type == 'tricks']{
+//           title,
+//           slug,
+//           tags
+//         }
+//       }
+//       `;
+//     } else if (selectedLevels.length === 2) {
+//       console.log("two selected");
+//       query = groq`
+//      {
+//        "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
+//        "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags}
+//      }
+//       `;
+//     } else if (selectedLevels.length === 1) {
+//       console.log("one selected");
+//       query = groq`
+//       *['${selectedLevels[0]}' in tags]{
+//         title,
+//         slug,
+//         tags
+//       }
+//       `;
+//     }
