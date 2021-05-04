@@ -79,23 +79,19 @@ const SectionBase = styled.section`
   background-color: whitesmoke;
   gap: 20px;
   box-shadow: 1px 4px 9px 4px rgba(0, 0, 0, 0.47);
-
   img {
     width: 40%;
   }
-
   #skeleton-pic {
     width: 300px;
     opacity: 0.7;
   }
-
   article {
     padding: ${(props) => props.theme.spacing[5]};
     h2 {
       font-size: ${(props) => props.theme.fontSizes[6]};
       padding: ${(props) => props.theme.spacing[4]};
     }
-
     span {
       font-size: ${(props) => props.theme.fontSizes[5]};
       padding: 0 ${(props) => props.theme.spacing[3]};
@@ -104,7 +100,6 @@ const SectionBase = styled.section`
     }
   }
 `;
-
 export default TrickPage;
 
 // import imageUrlBuilder from "@sanity/image-url";
