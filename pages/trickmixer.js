@@ -12,8 +12,17 @@ const TrickMixer = () => {
   const [trickData, setTrickData] = useState();
 
   useEffect(() => {
-    console.log(trickData);
+    if (trickData === undefined || null) {
+      console.log("its empty!");
+    } else {
+      console.log(trickData);
+    }
   }, [trickData]);
+
+  function secondTestSubmit(e) {
+    e.preventDefault();
+    console.log(selectedLevels);
+  }
 
   function testSubmit(e) {
     e.preventDefault();
@@ -31,13 +40,10 @@ const TrickMixer = () => {
     client
       .fetch(query)
       .then((data) => {
-        //console.log("inside the fetch call", data);
         delete data.undefined;
-        //console.log("new data from fetch call", data);
-
         let newData = [];
         Object.entries(data).forEach((el) => newData.push(el));
-        //console.log("this is the new data:", newData);
+        console.log(newData);
         setTrickData(newData);
 
         //setTrickData([data]);
@@ -71,7 +77,7 @@ const TrickMixer = () => {
               together in a single run. Of course, feel free to skip some, add
               others, and do them in any order you want!
             </p>
-            <FormBase onSubmit={(e) => testSubmit(e)}>
+            <FormBase onSubmit={(e) => secondTestSubmit(e)}>
               <Input
                 type={"checkbox"}
                 id={"beginnerLvl"}
@@ -143,40 +149,8 @@ const FormBase = styled.form`
 `;
 export default TrickMixer;
 
-// `*[_type == "tricks" && 'Beginner' in categories]{
-//   title,
-//   slug,
-//   "category": categories[]-> title,
-// }`
-
-// let query;
-
-//     if (selectedLevels.length === 3) {
-//       console.log("there are 3 selected");
-//       query = groq`
-//       {
-//         "tricks": *[_type == 'tricks']{
-//           title,
-//           slug,
-//           tags
-//         }
-//       }
-//       `;
-//     } else if (selectedLevels.length === 2) {
-//       console.log("two selected");
-//       query = groq`
-//      {
-//        "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
-//        "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags}
-//      }
-//       `;
-//     } else if (selectedLevels.length === 1) {
-//       console.log("one selected");
-//       query = groq`
-//       *['${selectedLevels[0]}' in tags]{
-//         title,
-//         slug,
-//         tags
-//       }
-//       `;
-//     }
+// {
+//   "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
+//   "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags},
+//   "${selectedLevels[2]}": *[_type == "tricks" && "${selectedLevels[2]}" in tags]{title, slug, tags},
+//  }
