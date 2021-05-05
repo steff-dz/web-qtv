@@ -51,22 +51,25 @@ const TrickMixer = ({ tricks }) => {
         }
       });
     }
-
+    console.log("these are the filtered tricks:", filteredTricks);
     //Creating 2 empty arrays for unique numbers and tricks selected at random
     let randomSet = [];
     let numArray = [];
 
     //create six unique numbers--------
     while (numArray.length < 6) {
-      let num = Math.floor(Math.random() * filteredTricks.length) + 1;
+      let num = Math.floor(Math.random() * filteredTricks.length);
       if (numArray.indexOf(num) === -1) numArray.push(num);
     }
 
+    console.log("these are our numbers:", numArray);
     //finding random trick w/ random number & putting it into new array
     numArray.forEach((num) => {
       randomSet.push(filteredTricks[num]);
     });
     setTrickData(randomSet);
+
+    console.log("this is our random set", randomSet);
   }
 
   const handleInput = (e) => {
