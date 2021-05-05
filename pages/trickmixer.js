@@ -21,7 +21,6 @@ export async function getStaticProps() {
   `;
 
   const data = await client.fetch(query);
-  console.log(data);
 
   return {
     props: {
@@ -43,8 +42,9 @@ const TrickMixer = ({ tricks }) => {
   // }, [trickData]);
 
   //This is a helper function that could probably be moved outside
-  function randomNum() {
-    return Math.floor(Math.random() * (28 - 1) + 1);
+  function randomNum(max) {
+    console.log("this is our max length", max);
+    return Math.floor(Math.random() * (max - 1) + 1);
   }
 
   function testSubmit(e) {
@@ -52,10 +52,12 @@ const TrickMixer = ({ tricks }) => {
 
     console.log(randomNum());
     console.log(selectedLevels);
+
+    //conditional to filter out the tricks accordiong to the selected level---------
     let filteredTricks = [];
     if (selectedLevels.length === 3) {
       console.log("all three levels were selected");
-      return;
+      tricks.tricks.forEach((trick) => filteredTricks.push(trick));
     } else {
       tricks.tricks.forEach((trick) => {
         if (
@@ -67,7 +69,27 @@ const TrickMixer = ({ tricks }) => {
       });
     }
 
+    //pick a set of 6 random tricks from here
     console.log(filteredTricks);
+    let randomSet = [];
+    if (filteredTricks) {
+      console.log(filteredTricks.length);
+      for (let i = 0; i < 6; i++) {
+        randomSet.push(filteredTricks[randomNum(filteredTricks.length + 1)]);
+      }
+    }
+
+    console.log(randomSet);
+    const cleanedSet = new Set(randomSet);
+    const freshSet = [...cleanedSet];
+    console.log(freshSet);
+
+    //console.log("this is the filtered tricks length:", filteredTricks.length);
+
+    // for (let i = 0; i < 6; i++) {
+    //   console.log(randomNum(filterdTricks.length));
+    // }
+    //console.log(randomSet);
   }
 
   const handleInput = (e) => {
