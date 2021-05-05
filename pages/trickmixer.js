@@ -34,12 +34,6 @@ const TrickMixer = ({ tricks }) => {
   const [trickData, setTrickData] = useState();
   console.log(tricks);
 
-  //This is a helper function that could probably be moved outside
-  function randomNum(max) {
-    console.log("this is our max length", max);
-    return Math.floor(Math.random() * (max - 1) + 1);
-  }
-
   function testSubmit(e) {
     e.preventDefault();
     //conditional to filter out the tricks accordiong to the selected level---------
