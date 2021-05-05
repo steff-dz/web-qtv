@@ -33,13 +33,6 @@ const TrickMixer = ({ tricks }) => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [trickData, setTrickData] = useState();
   console.log(tricks);
-  // useEffect(() => {
-  //   if (trickData === undefined || null) {
-  //     console.log("its empty!");
-  //   } else {
-  //     console.log(trickData);
-  //   }
-  // }, [trickData]);
 
   //This is a helper function that could probably be moved outside
   function randomNum(max) {
@@ -49,10 +42,6 @@ const TrickMixer = ({ tricks }) => {
 
   function testSubmit(e) {
     e.preventDefault();
-
-    console.log(randomNum());
-    console.log(selectedLevels);
-
     //conditional to filter out the tricks accordiong to the selected level---------
     let filteredTricks = [];
     if (selectedLevels.length === 3) {
@@ -69,27 +58,21 @@ const TrickMixer = ({ tricks }) => {
       });
     }
 
-    //pick a set of 6 random tricks from here
-    console.log(filteredTricks);
+    //Creating 2 empty arrays for unique numbers and tricks selected at random
     let randomSet = [];
-    if (filteredTricks) {
-      console.log(filteredTricks.length);
-      for (let i = 0; i < 6; i++) {
-        randomSet.push(filteredTricks[randomNum(filteredTricks.length + 1)]);
-      }
+    let numArray = [];
+
+    //create six unique numbers--------
+    while (numArray.length < 6) {
+      let num = Math.floor(Math.random() * filteredTricks.length) + 1;
+      if (numArray.indexOf(num) === -1) numArray.push(num);
     }
 
-    console.log(randomSet);
-    const cleanedSet = new Set(randomSet);
-    const freshSet = [...cleanedSet];
-    console.log(freshSet);
-
-    //console.log("this is the filtered tricks length:", filteredTricks.length);
-
-    // for (let i = 0; i < 6; i++) {
-    //   console.log(randomNum(filterdTricks.length));
-    // }
-    //console.log(randomSet);
+    //finding random trick w/ random number & putting it into new array
+    numArray.forEach((num) => {
+      randomSet.push(filteredTricks[num]);
+    });
+    setTrickData(randomSet);
   }
 
   const handleInput = (e) => {
@@ -189,50 +172,3 @@ const FormBase = styled.form`
   }
 `;
 export default TrickMixer;
-
-// function testSubmit(e) {
-//   e.preventDefault();
-//   console.log(selectedLevels);
-//   //create a fetch call to sanity with the category matching the ones selected
-
-//   let query = groq`
-//     {
-//      "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
-//      "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags},
-//      "${selectedLevels[2]}": *[_type == "tricks" && "${selectedLevels[2]}" in tags]{title, slug, tags},
-//     }
-//     `;
-
-//   client
-//     .fetch(query)
-//     .then((data) => {
-//       delete data.undefined;
-//       let newData = [];
-//       Object.entries(data).forEach((el) => newData.push(el));
-//       console.log(newData);
-//       setTrickData(newData);
-
-//       //setTrickData([data]);
-//     })
-//     .catch(console.error);
-// }
-
-// let theseTricks = [];
-
-//     if (selectedLevels.length === 1) {
-//       theseTricks = tricks.tricks.filter(
-//         (el) => el.tags[0] === selectedLevels[0]
-//       );
-//     } else if (selectedLevels.length === 2) {
-//       console.log("two were ticked");
-//       theseTricks.push(
-//         tricks.tricks.filter((el) => el.tags[0] === selectedLevels[0])
-//       );
-//       theseTricks.push(
-//         tricks.tricks.filter((el) => el.tags[0] === selectedLevels[1])
-//       );
-//     } else {
-//       console.log("there were ticked");
-//     }
-
-//     console.log(theseTricks);
