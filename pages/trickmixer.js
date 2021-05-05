@@ -32,7 +32,7 @@ export async function getStaticProps() {
 const TrickMixer = ({ tricks }) => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [trickData, setTrickData] = useState();
-  console.log(tricks);
+  const [displayTricks, setDisplayTricks] = useState(false);
 
   function testSubmit(e) {
     e.preventDefault();
@@ -86,7 +86,7 @@ const TrickMixer = ({ tricks }) => {
       <Wrapper>
         <main>
           <PageTitle style={{ paddingBottom: "2rem" }}>Trick Mixer</PageTitle>
-          <SectionBase>
+          <SectionFormBase>
             <p>
               If you need ideas for a run, we can help you with that! Select the
               level of tricks you want, then hit the GO button. <br />
@@ -122,14 +122,29 @@ const TrickMixer = ({ tricks }) => {
               />
               <button type="submit">GO</button>
             </FormBase>
-          </SectionBase>
+          </SectionFormBase>
+          <SectionTricksBase>
+            {trickData && (
+              <button onClick={() => setDisplayTricks(!displayTricks)}>
+                Checkout My Mix
+              </button>
+            )}
+            <div className="trick-container">
+              {displayTricks &&
+                trickData.map((trick) => (
+                  <div className="trick-card" key={trick.slug.current}>
+                    {trick.title}
+                  </div>
+                ))}
+            </div>
+          </SectionTricksBase>
         </main>
       </Wrapper>
     </>
   );
 };
 
-const SectionBase = styled.section`
+const SectionFormBase = styled.section`
   border: 1px solid grey;
   width: 90%;
   margin: 0 auto;
@@ -163,6 +178,34 @@ const FormBase = styled.form`
   button {
     width: 20%;
     font-size: 3rem;
+  }
+`;
+
+const SectionTricksBase = styled.section`
+  border: 1px solid lightsalmon;
+  width: 90%;
+  min-height: 20vh;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  button {
+    width: 20%;
+    font-size: 3rem;
+    margin: 1rem;
+  }
+
+  .trick-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 0 5rem;
+  }
+
+  .trick-card {
+    background-color: white;
+    font-size: 3rem;
+    padding: 1rem 1.5rem;
+    text-align: center;
   }
 `;
 export default TrickMixer;
