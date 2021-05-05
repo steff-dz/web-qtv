@@ -7,48 +7,67 @@ import Input from "../components/Input";
 import client from "../client";
 import groq from "groq";
 
-const TrickMixer = () => {
+//try and export this to another file since you are using this on two pages
+export async function getStaticProps() {
+  const query = groq`
+  {
+      "tricks": *[_type == 'tricks']{
+        title, 
+        slug,
+        tags
+      }
+  }
+  
+  `;
+
+  const data = await client.fetch(query);
+  console.log(data);
+
+  return {
+    props: {
+      tricks: data,
+    },
+  };
+}
+
+const TrickMixer = ({ tricks }) => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [trickData, setTrickData] = useState();
+  console.log(tricks);
+  // useEffect(() => {
+  //   if (trickData === undefined || null) {
+  //     console.log("its empty!");
+  //   } else {
+  //     console.log(trickData);
+  //   }
+  // }, [trickData]);
 
-  useEffect(() => {
-    if (trickData === undefined || null) {
-      console.log("its empty!");
-    } else {
-      console.log(trickData);
-    }
-  }, [trickData]);
-
-  function secondTestSubmit(e) {
-    e.preventDefault();
-    console.log(selectedLevels);
+  //This is a helper function that could probably be moved outside
+  function randomNum() {
+    return Math.floor(Math.random() * (28 - 1) + 1);
   }
 
   function testSubmit(e) {
     e.preventDefault();
+
+    console.log(randomNum());
     console.log(selectedLevels);
-    //create a fetch call to sanity with the category matching the ones selected
+    let filteredTricks = [];
+    if (selectedLevels.length === 3) {
+      console.log("all three levels were selected");
+      return;
+    } else {
+      tricks.tricks.forEach((trick) => {
+        if (
+          trick.tags[0] === selectedLevels[0] ||
+          trick.tags[0] === selectedLevels[1]
+        ) {
+          filteredTricks.push(trick);
+        }
+      });
+    }
 
-    let query = groq`
-      {   
-       "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
-       "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags},
-       "${selectedLevels[2]}": *[_type == "tricks" && "${selectedLevels[2]}" in tags]{title, slug, tags},
-      }
-      `;
-
-    client
-      .fetch(query)
-      .then((data) => {
-        delete data.undefined;
-        let newData = [];
-        Object.entries(data).forEach((el) => newData.push(el));
-        console.log(newData);
-        setTrickData(newData);
-
-        //setTrickData([data]);
-      })
-      .catch(console.error);
+    console.log(filteredTricks);
   }
 
   const handleInput = (e) => {
@@ -77,7 +96,7 @@ const TrickMixer = () => {
               together in a single run. Of course, feel free to skip some, add
               others, and do them in any order you want!
             </p>
-            <FormBase onSubmit={(e) => secondTestSubmit(e)}>
+            <FormBase onSubmit={(e) => testSubmit(e)}>
               <Input
                 type={"checkbox"}
                 id={"beginnerLvl"}
@@ -149,8 +168,49 @@ const FormBase = styled.form`
 `;
 export default TrickMixer;
 
-// {
-//   "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
-//   "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags},
-//   "${selectedLevels[2]}": *[_type == "tricks" && "${selectedLevels[2]}" in tags]{title, slug, tags},
-//  }
+// function testSubmit(e) {
+//   e.preventDefault();
+//   console.log(selectedLevels);
+//   //create a fetch call to sanity with the category matching the ones selected
+
+//   let query = groq`
+//     {
+//      "${selectedLevels[0]}": *[_type == "tricks" && "${selectedLevels[0]}" in tags]{title, slug, tags},
+//      "${selectedLevels[1]}": *[_type == "tricks" && "${selectedLevels[1]}" in tags]{title, slug, tags},
+//      "${selectedLevels[2]}": *[_type == "tricks" && "${selectedLevels[2]}" in tags]{title, slug, tags},
+//     }
+//     `;
+
+//   client
+//     .fetch(query)
+//     .then((data) => {
+//       delete data.undefined;
+//       let newData = [];
+//       Object.entries(data).forEach((el) => newData.push(el));
+//       console.log(newData);
+//       setTrickData(newData);
+
+//       //setTrickData([data]);
+//     })
+//     .catch(console.error);
+// }
+
+// let theseTricks = [];
+
+//     if (selectedLevels.length === 1) {
+//       theseTricks = tricks.tricks.filter(
+//         (el) => el.tags[0] === selectedLevels[0]
+//       );
+//     } else if (selectedLevels.length === 2) {
+//       console.log("two were ticked");
+//       theseTricks.push(
+//         tricks.tricks.filter((el) => el.tags[0] === selectedLevels[0])
+//       );
+//       theseTricks.push(
+//         tricks.tricks.filter((el) => el.tags[0] === selectedLevels[1])
+//       );
+//     } else {
+//       console.log("there were ticked");
+//     }
+
+//     console.log(theseTricks);
