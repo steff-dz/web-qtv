@@ -50,7 +50,7 @@ const Vault = ({ tricks }) => {
 
   return (
     <>
-      <NavigationBar />-
+      <NavigationBar />
       <Wrapper>
         <main>
           <PageTitle>The Vault of Tricks</PageTitle>
