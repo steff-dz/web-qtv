@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Input = ({ type, id, name, value, title, handleInput }) => {
   return (
     <InputContainer>
+      <label htmlFor={id}>{title}</label>
       <input
         type={type}
         id={id}
@@ -10,17 +11,17 @@ const Input = ({ type, id, name, value, title, handleInput }) => {
         value={value}
         onChange={(e) => handleInput(e)}
       />
-      <label htmlFor={id}>{title}</label>
     </InputContainer>
   );
 };
 
 const InputContainer = styled.div`
-  div {
-    border: 1px solid black;
-    input {
-      width: 30px;
-    }
+  border: 1px solid black;
+  label {
+    cursor: pointer;
+  }
+  input {
+    opacity: 0.5;
   }
 `;
 

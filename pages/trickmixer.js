@@ -92,8 +92,40 @@ const TrickMixer = ({ tricks }) => {
       <MainBase>
         <StyledPageTitle>Trick Mixer</StyledPageTitle>
         <SectionBase>
-          <article id="instruction-container"></article>
-          <article id="form-container"></article>
+          <article id="instruction-container">
+            <p>Get a set of 6 random tricks to give you an idea for a run.</p>
+            <p>
+              Just click on the name of a level to choose which type of tricks
+              you want, then press GO!
+            </p>
+          </article>
+          <form onSubmit={(e) => testSubmit(e)}>
+            <Input
+              type={"checkbox"}
+              id={"beginnerLvl"}
+              name={"beginnerLvl"}
+              value={"Beginner"}
+              title={"Beginner Level"}
+              handleInput={handleInput}
+            />
+            <Input
+              type={"checkbox"}
+              id={"intermediateLvl"}
+              name={"intermediateLvl"}
+              value={"Intermediate"}
+              title={"Intermediate Level"}
+              handleInput={handleInput}
+            />
+            <Input
+              type={"checkbox"}
+              id={"advancedLvl"}
+              name={"advancedLvl"}
+              value={"Advanced"}
+              title={"Advanced Level"}
+              handleInput={handleInput}
+            />
+            <button type="submit">GO</button>
+          </form>
         </SectionBase>
       </MainBase>
     </>
@@ -131,24 +163,49 @@ const StyledPageTitle = styled(PageTitle)`
 
 const SectionBase = styled.section`
   margin: 0 auto;
-  border: 1px solid pink;
+  /* border: 1px solid grey; */
   width: 90%;
   height: 70%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 
-  #instruction-container {
-    border: 1px solid black;
-    width: 400px;
-    height: 300px;
+  article {
+    font-family: ${(props) => props.theme.textFont};
+    color: ${(props) => props.theme.white};
+    font-size: 3rem;
+    border-radius: 15px;
+
+    p {
+      text-align: left;
+
+      :nth-child(1) {
+        margin-bottom: 2rem;
+      }
+    }
   }
 
-  #form-container {
-    border: 1px solid yellow;
-    width: 400px;
-    height: 300px;
+  #instruction-container {
+    width: 40vw;
+    line-height: 45px;
+    height: 40vh;
+    background-color: rgb(84, 104, 113, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8rem;
+  }
+
+  form {
+    width: 40vw;
+    height: 40vh;
+    background-color: rgb(75, 98, 109);
     align-self: flex-end;
+
+    padding: 0 8rem;
+    font-family: ${(props) => props.theme.textFont};
+    color: ${(props) => props.theme.white};
+    font-size: 3rem;
+    border-radius: 15px;
   }
 `;
 
