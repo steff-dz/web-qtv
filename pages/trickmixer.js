@@ -6,6 +6,8 @@ import { PageTitle } from "../components/PageTitle";
 import Input from "../components/Input";
 import client from "../client";
 import groq from "groq";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 //try and export this to another file since you are using this on two pages
 export async function getStaticProps() {
@@ -92,7 +94,7 @@ const TrickMixer = ({ tricks }) => {
       <MainBase>
         <StyledPageTitle>Trick Mixer</StyledPageTitle>
         <SectionBase>
-          <article id="instruction-container">
+          <article>
             <p>Get a set of 6 random tricks to give you an idea for a run.</p>
             <p>
               Just click on the name of a level to choose which type of tricks
@@ -108,6 +110,7 @@ const TrickMixer = ({ tricks }) => {
               title={"Beginner Level"}
               handleInput={handleInput}
             />
+
             <Input
               type={"checkbox"}
               id={"intermediateLvl"}
@@ -124,7 +127,9 @@ const TrickMixer = ({ tricks }) => {
               title={"Advanced Level"}
               handleInput={handleInput}
             />
-            <button type="submit">GO</button>
+            <button type="submit">
+              GO <FontAwesomeIcon size="xs" icon={faArrowDown} />
+            </button>
           </form>
         </SectionBase>
       </MainBase>
@@ -174,6 +179,14 @@ const SectionBase = styled.section`
     color: ${(props) => props.theme.white};
     font-size: 3rem;
     border-radius: 15px;
+    width: 40vw;
+    line-height: 45px;
+    height: 40vh;
+    background-color: rgb(84, 104, 113, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8rem;
 
     p {
       text-align: left;
@@ -184,28 +197,25 @@ const SectionBase = styled.section`
     }
   }
 
-  #instruction-container {
-    width: 40vw;
-    line-height: 45px;
-    height: 40vh;
-    background-color: rgb(84, 104, 113, 0.6);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 8rem;
-  }
-
   form {
     width: 40vw;
     height: 40vh;
     background-color: rgb(75, 98, 109);
     align-self: flex-end;
-
-    padding: 0 8rem;
+    padding: 2rem 8rem;
     font-family: ${(props) => props.theme.textFont};
     color: ${(props) => props.theme.white};
     font-size: 3rem;
     border-radius: 15px;
+
+    button {
+      border: 1px solid grey;
+      background-color: transparent;
+      font-size: 3.5rem;
+      color: ${(props) => props.theme.white};
+      margin-top: 5%;
+      font-weight: 800;
+    }
   }
 `;
 
