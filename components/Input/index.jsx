@@ -32,6 +32,8 @@ const InputContainer = styled.div`
 
   label {
     cursor: pointer;
+    text-align: left;
+
     :hover {
       font-weight: 200;
     }
