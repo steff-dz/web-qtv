@@ -35,24 +35,30 @@ export async function getStaticProps() {
 const TrickMixer = ({ tricks }) => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [trickData, setTrickData] = useState();
-  const [displayTricks, setDisplayTricks] = useState(false);
   const [formToggle, setFormToggle] = useState(true);
 
   useEffect(() => {
     if (trickData) {
-      console.log(trickData.length, trickData, "from useEffect");
       setFormToggle(!formToggle);
-    } else {
-      console.log("trick data is empty");
     }
   }, [trickData]);
 
+  const handleInput = (e) => {
+    const choice = e.target.value;
+    const exists = selectedLevels.find((e) => e === choice);
+    if (exists) {
+      setSelectedLevels(selectedLevels.filter((el) => el !== choice));
+    } else {
+      setSelectedLevels([...selectedLevels, choice]);
+    }
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
+
     //conditional to filter out the tricks accordiong to the selected level---------
     let filteredTricks = [];
     if (selectedLevels.length === 3) {
-      console.log("all three levels were selected");
       tricks.tricks.forEach((trick) => filteredTricks.push(trick));
     } else {
       tricks.tricks.forEach((trick) => {
@@ -64,7 +70,6 @@ const TrickMixer = ({ tricks }) => {
         }
       });
     }
-    //console.log("these are the filtered tricks:", filteredTricks);
     //Creating 2 empty arrays for unique numbers and tricks selected at random
     let randomSet = [];
     let numArray = [];
@@ -75,26 +80,12 @@ const TrickMixer = ({ tricks }) => {
       if (numArray.indexOf(num) === -1) numArray.push(num);
     }
 
-    //console.log("these are our numbers:", numArray);
     //finding random trick w/ random number & putting it into new array
     numArray.forEach((num) => {
       randomSet.push(filteredTricks[num]);
     });
     setTrickData(randomSet);
-
-    //console.log("this is our random set", randomSet);
   }
-
-  const handleInput = (e) => {
-    const choice = e.target.value;
-    console.log(choice);
-    const exists = selectedLevels.find((e) => e === choice);
-    if (exists) {
-      setSelectedLevels(selectedLevels.filter((el) => el !== choice));
-    } else {
-      setSelectedLevels([...selectedLevels, choice]);
-    }
-  };
 
   function renderForm() {
     return (
@@ -115,6 +106,7 @@ const TrickMixer = ({ tricks }) => {
               value={"Beginner"}
               title={"Beginner Level"}
               handleInput={handleInput}
+              selectedLevels={selectedLevels}
             />
 
             <Input
@@ -124,6 +116,7 @@ const TrickMixer = ({ tricks }) => {
               value={"Intermediate"}
               title={"Intermediate Level"}
               handleInput={handleInput}
+              selectedLevels={selectedLevels}
             />
             <Input
               type={"checkbox"}
@@ -132,6 +125,7 @@ const TrickMixer = ({ tricks }) => {
               value={"Advanced"}
               title={"Advanced Level"}
               handleInput={handleInput}
+              selectedLevels={selectedLevels}
             />
 
             <button type="submit">
@@ -233,6 +227,7 @@ const FormSection = styled.section`
     width: 35vw;
     height: 30vh;
     background-color: rgb(84, 104, 113, 0.6);
+
     p {
       text-align: left;
 

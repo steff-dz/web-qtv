@@ -3,20 +3,30 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const Input = ({ type, id, name, value, title, handleInput }) => {
-  const [toggle, setToggle] = useState(false);
+const Input = ({
+  type,
+  id,
+  name,
+  value,
+  title,
+  handleInput,
+  selectedLevels,
+}) => {
   const checkmark = <FontAwesomeIcon icon={faCheck} />;
 
   return (
     <InputContainer>
-      {toggle && type === "checkbox" ? <span>{checkmark} </span> : " "}
+      {selectedLevels.find((el) => el === value) ? (
+        <span>{checkmark} </span>
+      ) : (
+        ""
+      )}
       <label htmlFor={id}>{title}</label>
       <input
         type={type}
         id={id}
         name={name}
         value={value}
-        onClick={() => setToggle(!toggle)}
         onChange={(e) => handleInput(e)}
       />
     </InputContainer>
