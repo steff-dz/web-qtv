@@ -41,13 +41,13 @@ export async function getStaticProps({ params }) {
 
 const TrickPage = ({ trick }) => {
   function imageHandler() {
-    if (!trick) {
-      console.log("no image here");
+    if (!trick.image) {
       return <img id="skeleton-pic" src="/images/skates.jpeg" />;
     } else {
       return <img src={trick.image.asset.url} />;
     }
   }
+
   return (
     <>
       <NavigationBar />
@@ -57,7 +57,7 @@ const TrickPage = ({ trick }) => {
           <SectionBase>
             {imageHandler()}
             <article>
-              <h2>Description:</h2>
+              <h2>Description</h2>
               <span>
                 {trick && <BlockContent id="descrip" blocks={trick.body} />}
               </span>
@@ -86,39 +86,16 @@ const SectionBase = styled.section`
     opacity: 0.7;
   }
   article {
-    padding: ${(props) => props.theme.spacing[5]};
+    padding: 6rem 4rem;
     h2 {
-      font-size: ${(props) => props.theme.fontSizes[6]};
-      padding: ${(props) => props.theme.spacing[4]};
+      font-size: 3rem;
+      margin-bottom: 2rem;
     }
     span {
-      font-size: ${(props) => props.theme.fontSizes[5]};
-      padding: 0 ${(props) => props.theme.spacing[3]};
+      font-size: 2.5rem;
       letter-spacing: 2px;
       line-height: 40px;
     }
   }
 `;
 export default TrickPage;
-
-// import imageUrlBuilder from "@sanity/image-url";
-
-// const builder = imageUrlBuilder(client);
-
-// function urlFor(source) {
-//   return builder.image(source);
-// }
-
-// [0]{
-//   title,
-//   slug,
-//   mainImage{
-//     asset->{
-//       _id,
-//       url
-//     }
-//   },
-//   body,
-//   'categories': categories[]-> title,
-
-// }

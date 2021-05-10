@@ -98,7 +98,7 @@ const TrickMixer = ({ tricks }) => {
           </p>
         </article>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div id="input-container">
+          <div>
             <Input
               type={"checkbox"}
               id={"beginnerLvl"}
@@ -127,11 +127,10 @@ const TrickMixer = ({ tricks }) => {
               handleInput={handleInput}
               selectedLevels={selectedLevels}
             />
-
-            <button type="submit">
-              GO <FontAwesomeIcon size="xs" icon={faArrowRight} />
-            </button>
           </div>
+          <button type="submit">
+            GO <FontAwesomeIcon size="xs" icon={faArrowRight} />
+          </button>
         </form>
       </>
     );
@@ -164,7 +163,9 @@ const TrickMixer = ({ tricks }) => {
         <NavigationBar />
       </IndexWrapper>
       <MainBase>
-        <StyledPageTitle>Trick Mixer</StyledPageTitle>
+        <PageTitle style={{ marginTop: "7%", fontSize: "6.3rem" }}>
+          Trick Mixer
+        </PageTitle>
         <FormSection>{formToggle ? renderForm() : renderTricks()}</FormSection>
       </MainBase>
     </>
@@ -196,41 +197,30 @@ const MainBase = styled.main`
   flex-direction: column;
 `;
 
-const StyledPageTitle = styled(PageTitle)`
-  z-index: 30;
-  margin-top: 5%;
-  font-size: 8rem;
-`;
-
 const FormSection = styled.section`
   margin: 0 auto;
-  /* border: 1px solid grey; */
+
   width: 80vw;
-  height: fit-content;
+  height: 60vh;
   display: flex;
   justify-content: space-between;
+  font-size: 2.5rem;
 
   article {
     font-family: ${(props) => props.theme.textFont};
     color: ${(props) => props.theme.white};
-    font-size: 3rem;
     border-radius: 15px;
-    line-height: 45px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 8rem;
     font-weight: 200;
+    width: 35vw;
+    height: fit-content;
   }
 
   #instructions-container {
-    width: 35vw;
-    height: 30vh;
     background-color: rgb(84, 104, 113, 0.6);
 
-    p {
-      text-align: left;
+    padding: 3rem 8rem;
 
+    p {
       :nth-child(1) {
         margin-bottom: 2rem;
       }
@@ -238,34 +228,40 @@ const FormSection = styled.section`
   }
 
   #trick-container {
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
     background-color: rgb(75, 98, 109, 0.8);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    font-size: 4rem;
-    line-height: 45px;
-    padding: 5rem 0;
+    font-size: 2.5rem;
+    padding: 2rem 0;
 
     a {
       text-decoration: none;
       color: ${(props) => props.theme.white};
+      :hover {
+        font-weight: 400;
+        letter-spacing: 5px;
+        transition: 0.3s;
+      }
     }
   }
 
   form {
-    width: 35vw;
-    height: 30vh;
     background-color: rgb(75, 98, 109);
-    margin-top: 10%;
-    padding: 2rem 8rem;
+    width: 35vw;
+    height: fit-content;
     font-family: ${(props) => props.theme.textFont};
     color: ${(props) => props.theme.white};
-    font-size: 3rem;
     font-weight: 200;
-    line-height: 45px;
     border-radius: 15px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 8rem;
   }
 
   button {
@@ -274,8 +270,8 @@ const FormSection = styled.section`
     background-color: transparent;
     font-size: 3.5rem;
     color: ${(props) => props.theme.white};
-    margin-top: 5%;
     font-weight: 800;
+    margin-top: 1rem;
     span {
       padding-right: 20px;
     }
@@ -285,9 +281,4 @@ const FormSection = styled.section`
   }
 `;
 
-const TricksSection = styled.section`
-  border: 1px solid lightblue;
-
-  height: 300px;
-`;
 export default TrickMixer;

@@ -50,32 +50,30 @@ const Vault = ({ tricks }) => {
   return (
     <>
       <NavigationBar />
-      <Wrapper>
-        <main>
-          <PageTitle>The Vault of Tricks</PageTitle>
-          <SectionBase>
-            <OptionContainer>
-              <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
-              <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
-              <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
-            </OptionContainer>
-            <ArticleBase>
-              {tricksData ? (
-                renderTricks()
-              ) : (
-                <p>Select a level from above to check out a list of tricks</p>
-              )}
-            </ArticleBase>
-          </SectionBase>
-        </main>
-      </Wrapper>
+      <main>
+        <PageTitle>The Vault of Tricks</PageTitle>
+        <SectionBase>
+          <OptionContainer>
+            <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
+            <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
+            <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
+          </OptionContainer>
+          <ArticleBase>
+            {tricksData ? (
+              renderTricks()
+            ) : (
+              <p>Select a level from above to check out a list of tricks</p>
+            )}
+          </ArticleBase>
+        </SectionBase>
+      </main>
     </>
   );
 };
 
 const SectionBase = styled.section`
   margin: 0 auto;
-  margin-top: ${(props) => props.theme.spacing[5]};
+  /* margin-top: ${(props) => props.theme.spacing[5]}; */
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -94,12 +92,12 @@ const ArticleBase = styled.article`
   justify-content: center;
 
   p {
-    font-size: ${(props) => props.theme.fontSizes[6]};
+    font-size: 2.5rem;
     color: ${(props) => props.theme.white};
   }
 
   h3 {
-    font-size: 4rem;
+    font-size: 2.5rem;
     color: ${(props) => props.theme.teal};
     font-family: ${(props) => props.theme.textFont};
     cursor: pointer;
@@ -109,10 +107,10 @@ const ArticleBase = styled.article`
     }
     :nth-child(odd) {
       color: ${(props) => props.theme.green};
-      font-size: 5rem;
+      font-size: 3rem;
     }
     &:hover {
-      font-weight: 100;
+      color: white;
     }
   }
 `;
@@ -123,13 +121,13 @@ const OptionContainer = styled.div`
   gap: ${(props) => props.theme.spacing[6]};
 
   h2 {
-    font-size: ${(props) => props.theme.fontSizes[7]};
+    font-size: 3rem;
     font-family: ${(props) => props.theme.textFont};
     color: ${(props) => props.theme.black};
     font-weight: 400;
     cursor: pointer;
     &:hover {
-      text-decoration: underline;
+      opacity: 0.5;
     }
   }
 `;

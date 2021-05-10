@@ -85,16 +85,18 @@ const MainBase = styled.main`
 `;
 
 const MessageContainer = styled.p`
-  border: 1px solid black;
-  background-color: rgb(75, 137, 144, 0.7);
+  background-color: rgb(75, 137, 144, 0.8);
   color: white;
   width: 30%;
   height: fit-content;
-  padding: 1.5rem;
+  padding: 3rem;
   position: absolute;
   bottom: 40px;
   right: 50px;
-  font-size: 3rem;
+  font-size: 2.5rem;
+  line-height: 40px;
+  font-weight: 400;
+  text-align: left;
 `;
 
 export default Home;
