@@ -74,12 +74,12 @@ const MainBase = styled.main`
         background-color: ${(props) => props.theme.green};
         width: 90%;
       }
-
-      h1 {
-        font-family: ${(props) => props.theme.titleFont};
-        font-size: ${(props) => props.theme.fontSizes[8]};
-        color: ${(props) => props.theme.white};
-        text-align: center;
+    }
+    h1 {
+      font-family: ${(props) => props.theme.titleFont};
+      font-size: ${(props) => props.theme.fontSizes[8]};
+      color: ${(props) => props.theme.white};
+      text-align: center;
     }
   }
 `;

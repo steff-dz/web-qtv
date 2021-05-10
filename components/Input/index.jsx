@@ -1,8 +1,27 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const Input = ({ type, id, name, value, title, handleInput }) => {
+const Input = ({
+  type,
+  id,
+  name,
+  value,
+  title,
+  handleInput,
+  selectedLevels,
+}) => {
+  const checkmark = <FontAwesomeIcon icon={faCheck} />;
+
   return (
     <InputContainer>
+      {selectedLevels.find((el) => el === value) ? (
+        <span>{checkmark} </span>
+      ) : (
+        ""
+      )}
+      <label htmlFor={id}>{title}</label>
       <input
         type={type}
         id={id}
@@ -10,17 +29,27 @@ const Input = ({ type, id, name, value, title, handleInput }) => {
         value={value}
         onChange={(e) => handleInput(e)}
       />
-      <label htmlFor={id}>{title}</label>
     </InputContainer>
   );
 };
 
 const InputContainer = styled.div`
-  div {
-    border: 1px solid black;
-    input {
-      width: 30px;
+  width: fit-content;
+
+  span {
+    margin: 0 1rem;
+  }
+
+  label {
+    cursor: pointer;
+    text-align: left;
+
+    :hover {
+      font-weight: 200;
     }
+  }
+  input {
+    opacity: 0;
   }
 `;
 

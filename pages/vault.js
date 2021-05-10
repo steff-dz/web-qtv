@@ -20,7 +20,6 @@ export async function getStaticProps() {
     `;
 
   const data = await client.fetch(query);
-  console.log(data);
 
   return {
     props: {

@@ -19,4 +19,6 @@ body {
 body {
   font-family: "Raleway", "Open Sans", sans-serif;
   background-color: #546871;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

@@ -41,7 +41,7 @@ export async function getStaticProps({ params }) {
 
 const TrickPage = ({ trick }) => {
   function imageHandler() {
-    if (trick.image === null || undefined) {
+    if (!trick) {
       console.log("no image here");
       return <img id="skeleton-pic" src="/images/skates.jpeg" />;
     } else {
