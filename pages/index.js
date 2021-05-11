@@ -66,6 +66,8 @@ const MainBase = styled.main`
       width: 70%;
       background-color: ${(props) => props.theme.blue};
       box-shadow: -1px 2px 9px 0px #000000;
+      font-size: 0;
+
       &:nth-child(2) {
         background-color: ${(props) => props.theme.teal};
         width: 80%;
@@ -77,7 +79,7 @@ const MainBase = styled.main`
     }
     h1 {
       font-family: ${(props) => props.theme.titleFont};
-      font-size: ${(props) => props.theme.fontSizes[8]};
+      font-size: ${(props) => props.theme.titleSize};
       color: ${(props) => props.theme.white};
       text-align: center;
     }
@@ -93,8 +95,8 @@ const MessageContainer = styled.p`
   position: absolute;
   bottom: 40px;
   right: 50px;
-  font-size: 2.5rem;
-  line-height: 40px;
+  font-size: ${(props) => props.theme.textSize};
+  line-height: ${(props) => props.theme.lineHeight};
   font-weight: 400;
   text-align: left;
 `;

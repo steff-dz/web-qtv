@@ -1,5 +1,9 @@
 export const theme = {
   spacing: [0, "0.25", "0.5rem", "1rem", "1.5rem", "2rem", "4rem"],
+  textSize: "2.5rem",
+  titleSize: "6rem",
+  lineHeight: "40px",
+  buttonFont: "3.5rem",
   fontSizes: [
     "0.75rem",
     "1rem",

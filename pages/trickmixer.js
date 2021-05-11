@@ -159,7 +159,7 @@ const TrickMixer = ({ tricks }) => {
   return (
     <>
       <IndexWrapper>
-        <ImageContainer></ImageContainer>
+        <ImageContainer />
         <NavigationBar />
       </IndexWrapper>
       <MainBase>
@@ -199,30 +199,28 @@ const MainBase = styled.main`
 
 const FormSection = styled.section`
   margin: 0 auto;
-
   width: 80vw;
   height: 60vh;
   display: flex;
   justify-content: space-between;
-  font-size: 2.5rem;
+  font-size: ${(props) => props.theme.textSize};
+  font-family: ${(props) => props.theme.textFont};
+  font-weight: 200;
 
   article {
-    font-family: ${(props) => props.theme.textFont};
     color: ${(props) => props.theme.white};
     border-radius: 15px;
-    font-weight: 200;
     width: 35vw;
     height: fit-content;
   }
 
   #instructions-container {
     background-color: rgb(84, 104, 113, 0.6);
-
     padding: 3rem 8rem;
 
     p {
       :nth-child(1) {
-        margin-bottom: 2rem;
+        margin-bottom: ${(props) => props.theme.spacing[5]};
       }
     }
   }
@@ -234,16 +232,15 @@ const FormSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    font-size: 2.5rem;
-    padding: 2rem 0;
+    gap: ${(props) => props.theme.spacing[5]};
+    padding: ${(props) => props.theme.spacing[5]} 0;
 
     a {
       text-decoration: none;
       color: ${(props) => props.theme.white};
       :hover {
         font-weight: 400;
-        letter-spacing: 5px;
+        letter-spacing: ${(props) => props.theme.spacing[2]};
         transition: 0.3s;
       }
     }
@@ -268,11 +265,10 @@ const FormSection = styled.section`
     border: none;
     cursor: pointer;
     background-color: transparent;
-    font-size: 3.5rem;
+    font-size: ${(props) => props.theme.buttonFont};
     color: ${(props) => props.theme.white};
     font-weight: 800;
-    margin-top: 1rem;
-    span {
+    margin-top: ${(props) => props.theme.spacing[3]} span {
       padding-right: 20px;
     }
     :hover {

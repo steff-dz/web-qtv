@@ -40,6 +40,7 @@ export async function getStaticProps({ params }) {
 }
 
 const TrickPage = ({ trick }) => {
+  console.log(trick);
   function imageHandler() {
     if (!trick.image) {
       return <img id="skeleton-pic" src="/images/skates.jpeg" />;
@@ -71,30 +72,28 @@ const TrickPage = ({ trick }) => {
 
 const SectionBase = styled.section`
   display: flex;
-  width: 80%;
+  width: 70%;
   min-height: 60%;
   margin: 0 auto;
-  margin-top: 30px;
-  background-color: whitesmoke;
-  gap: 20px;
+  background-color: ${(props) => props.theme.white};
   box-shadow: 1px 4px 9px 4px rgba(0, 0, 0, 0.47);
   img {
     width: 40%;
   }
   #skeleton-pic {
-    width: 300px;
+    width: 250px;
     opacity: 0.7;
   }
   article {
     padding: 6rem 4rem;
     h2 {
-      font-size: 3rem;
-      margin-bottom: 2rem;
+      font-size: ${(props) => props.theme.fontSizes[6]};
+      margin-bottom: ${(props) => props.theme.spacing[5]};
     }
     span {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      line-height: 40px;
+      font-size: ${(props) => props.theme.textSize};
+      letter-spacing: 1.5px;
+      line-height: ${(props) => props.theme.lineHeight};
     }
   }
 `;

@@ -1,10 +1,9 @@
 import client from "../client";
 import styled from "styled-components";
 import NavigationBar from "../components/NavigationBar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import groq from "groq";
 import { PageTitle } from "../components/PageTitle";
-import { Wrapper } from "../components/Wrapper";
 import { useRouter } from "next/router";
 
 export async function getStaticProps() {
@@ -73,7 +72,6 @@ const Vault = ({ tricks }) => {
 
 const SectionBase = styled.section`
   margin: 0 auto;
-  /* margin-top: ${(props) => props.theme.spacing[5]}; */
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -92,12 +90,12 @@ const ArticleBase = styled.article`
   justify-content: center;
 
   p {
-    font-size: 2.5rem;
+    font-size: ${(props) => props.theme.textSize};
     color: ${(props) => props.theme.white};
   }
 
   h3 {
-    font-size: 2.5rem;
+    font-size: ${(props) => props.theme.textSize};
     color: ${(props) => props.theme.teal};
     font-family: ${(props) => props.theme.textFont};
     cursor: pointer;
@@ -107,7 +105,7 @@ const ArticleBase = styled.article`
     }
     :nth-child(odd) {
       color: ${(props) => props.theme.green};
-      font-size: 3rem;
+      font-size: ${(props) => props.theme.fontSizes[6]};
     }
     &:hover {
       color: white;
@@ -121,7 +119,7 @@ const OptionContainer = styled.div`
   gap: ${(props) => props.theme.spacing[6]};
 
   h2 {
-    font-size: 3rem;
+    font-size: ${(props) => props.theme.fontSizes[6]};
     font-family: ${(props) => props.theme.textFont};
     color: ${(props) => props.theme.black};
     font-weight: 400;
