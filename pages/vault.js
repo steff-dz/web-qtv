@@ -48,27 +48,34 @@ const Vault = ({ tricks }) => {
 
   return (
     <>
-      <NavigationBar />
-      <main>
-        <PageTitle>The Vault of Tricks</PageTitle>
-        <SectionBase>
-          <OptionContainer>
-            <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
-            <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
-            <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
-          </OptionContainer>
-          <ArticleBase>
-            {tricksData ? (
-              renderTricks()
-            ) : (
-              <p>Select a level from above to check out a list of tricks</p>
-            )}
-          </ArticleBase>
-        </SectionBase>
-      </main>
+      <Wrapper>
+        <NavigationBar />
+
+        <main>
+          <PageTitle>The Vault of Tricks</PageTitle>
+          <SectionBase>
+            <OptionContainer>
+              <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
+              <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
+              <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
+            </OptionContainer>
+            <ArticleBase>
+              {tricksData ? (
+                renderTricks()
+              ) : (
+                <p>Select a level from above to check out a list of tricks</p>
+              )}
+            </ArticleBase>
+          </SectionBase>
+        </main>
+      </Wrapper>
     </>
   );
 };
+const Wrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+`;
 
 const SectionBase = styled.section`
   margin: 0 auto;
@@ -92,6 +99,9 @@ const ArticleBase = styled.article`
   p {
     font-size: ${(props) => props.theme.textSize};
     color: ${(props) => props.theme.white};
+    @media only screen and (max-width: 530px) {
+      text-align: center;
+    }
   }
 
   h3 {
@@ -102,19 +112,34 @@ const ArticleBase = styled.article`
 
     :nth-child(even) {
       padding-top: ${(props) => props.theme.spacing[2]};
+      @media only screen and (max-width: 750px) {
+        padding: 0;
+        font-size: 2rem;
+      }
     }
     :nth-child(odd) {
       color: ${(props) => props.theme.green};
       font-size: ${(props) => props.theme.fontSizes[6]};
+      @media only screen and (max-width: 750px) {
+        font-size: 2rem;
+      }
     }
     &:hover {
       color: white;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    padding: 2rem;
+    h2 {
+      text-align: center;
     }
   }
 `;
 
 const OptionContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: ${(props) => props.theme.spacing[6]};
 
@@ -127,6 +152,17 @@ const OptionContainer = styled.div`
     &:hover {
       opacity: 0.5;
     }
+  }
+
+  @media only screen and (max-width: 530px) {
+    gap: 1rem;
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  @media only screen and (max-width: 300px) {
+    gap: 0.5rem;
   }
 `;
 

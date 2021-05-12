@@ -17,14 +17,16 @@ const NavigationBar = () => {
 };
 
 const Nav = styled.nav`
-  width: 100%;
+  width: 100vw;
   padding: 0 ${(props) => props.theme.spacing[5]};
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: ${(props) => props.theme.grey};
-
   color: white;
+  @media only screen and (max-width: 500px) {
+    padding: 0 0.5rem;
+  }
 `;
 
 const Logo = styled.span`

@@ -9,4 +9,7 @@ export const PageTitle = styled.h1`
   letter-spacing: ${(props) => props.theme.spacing[2]};
   margin-bottom: 2rem;
   margin-top: 2%;
+  @media only screen and (max-width: 800px) {
+    font-size: 5rem;
+  }
 `;

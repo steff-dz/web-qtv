@@ -42,7 +42,7 @@ const BurgerMenu = styled.div`
       padding-left: 1rem;
       text-decoration: none;
       color: white;
-      font-size: 4rem;
+      font-size: 3.5rem;
       font-family: ${(props) => props.theme.textFont};
       &:hover {
         font-weight: 800;
@@ -57,30 +57,6 @@ const BurgerMenu = styled.div`
   @media only screen and (max-width: 1500px) {
     width: 100vw;
   }
-  /* ul {
-    list-style: none;
-    margin-top: 10%;
-    border: 1px solid yellow;
-    width: fit-content;
-  }
-
-  li {
-    border: 1px solid black;
-
-    text-align: center;
-    padding: 18px 10px;
-    color: white;
-    font-size: ${(props) => props.theme.fontSizes[7]};
-    font-family: ${(props) => props.theme.textFont};
-    &:hover {
-      font-weight: 800;
-    }
-    cursor: pointer;
-
-    @media only screen and (max-width: 1500px) {
-      margin-left: 30vw;
-    }
-  } */
 `;
 
 export default RightNav;
