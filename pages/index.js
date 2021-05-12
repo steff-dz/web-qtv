@@ -77,6 +77,7 @@ const MainBase = styled.main`
       box-shadow: -1px 2px 9px 0px #000000;
       font-size: 0;
       padding: 0 1rem;
+      z-index: 10;
       @media only screen and (max-width: 850px) {
         width: fit-content;
       }

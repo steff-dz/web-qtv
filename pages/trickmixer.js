@@ -72,6 +72,7 @@ const TrickMixer = ({ tricks }) => {
         }
       });
     }
+
     //Creating 2 empty arrays for unique numbers and tricks selected at random
     let randomSet = [];
     let numArray = [];

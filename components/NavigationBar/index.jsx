@@ -28,7 +28,7 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.span`
-  z-index: 21;
+  z-index: 8;
   img {
     padding-top: ${(props) => props.theme.spacing[4]};
     width: 125px;
