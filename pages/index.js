@@ -14,7 +14,7 @@ function Home() {
         <HeroContainer />
         <MessageContainer>
           QTV is a place to find all the skating tricks on quad skates under the
-          sun, from beginner to advance.
+          sun, from beginner to advanced.
         </MessageContainer>
         <NavigationBar />
 

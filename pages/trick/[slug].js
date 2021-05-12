@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import client from "../../client";
 import groq from "groq";
 import NavigationBar from "../../components/NavigationBar";
@@ -27,7 +26,6 @@ export async function getStaticProps({ params }) {
 
   try {
     const data = await client.fetch(query);
-
     return {
       revalidate: 60 * 60 * 24,
       props: {
@@ -40,13 +38,8 @@ export async function getStaticProps({ params }) {
 }
 
 const TrickPage = ({ trick }) => {
-  console.log(trick);
-  function imageHandler() {
-    if (!trick.image) {
-      return <img id="skeleton-pic" src="/images/skates.jpeg" />;
-    } else {
-      return <img src={trick.image.asset.url} />;
-    }
+  if (trick === undefined) {
+    return null;
   }
 
   return (
@@ -56,7 +49,11 @@ const TrickPage = ({ trick }) => {
         <main>
           <PageTitle>{trick && trick.title}</PageTitle>
           <SectionBase>
-            {imageHandler()}
+            {trick.image ? (
+              <img src={trick.image.asset.url} />
+            ) : (
+              <img id="skeleton-pic" src="/images/skates.jpeg" />
+            )}
             <article>
               <h2>Description</h2>
               <span>
@@ -98,3 +95,4 @@ const SectionBase = styled.section`
   }
 `;
 export default TrickPage;
+/* <img src={trick.image?.asset?.url} /> */

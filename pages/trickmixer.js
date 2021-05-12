@@ -9,6 +9,7 @@ import groq from "groq";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 //try and export this to another file since you are using this on two pages
 export async function getStaticProps() {
@@ -36,6 +37,7 @@ const TrickMixer = ({ tricks }) => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [trickData, setTrickData] = useState();
   const [formToggle, setFormToggle] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (trickData) {
@@ -268,7 +270,8 @@ const FormSection = styled.section`
     font-size: ${(props) => props.theme.buttonFont};
     color: ${(props) => props.theme.white};
     font-weight: 800;
-    margin-top: ${(props) => props.theme.spacing[3]} span {
+    margin-top: ${(props) => props.theme.spacing[3]};
+    span {
       padding-right: 20px;
     }
     :hover {
@@ -278,3 +281,12 @@ const FormSection = styled.section`
 `;
 
 export default TrickMixer;
+
+{
+  /* <p
+key={el.slug.current}
+onClick={() => router.push(`/trick/${el.slug.current}`)}
+>
+<a target="_blank">{el.title}</a>
+</p> */
+}
