@@ -154,7 +154,6 @@ const MessageContainer = styled.p`
   @media only screen and (max-width: 470px) {
     width: 100vw;
     left: 0px;
-
     height: fit-content;
   }
 `;

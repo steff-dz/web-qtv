@@ -44,9 +44,9 @@ const TrickPage = ({ trick }) => {
 
   return (
     <>
-      <NavigationBar />
-      <Wrapper>
-        <main>
+      <StyledWrapper>
+        <NavigationBar />
+        <MainBase>
           <PageTitle>{trick && trick.title}</PageTitle>
           <SectionBase>
             {trick.image ? (
@@ -61,36 +61,78 @@ const TrickPage = ({ trick }) => {
               </span>
             </article>
           </SectionBase>
-        </main>
-      </Wrapper>
+        </MainBase>
+      </StyledWrapper>
     </>
   );
 };
+const StyledWrapper = styled(Wrapper)`
+  position: relative;
+  min-height: 100vh;
+  @media only screen and (max-width: 400px) {
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+`;
+
+const MainBase = styled.main``;
 
 const SectionBase = styled.section`
   display: flex;
-  width: 70%;
-  min-height: 60%;
+  width: 70vw;
   margin: 0 auto;
-  background-color: ${(props) => props.theme.white};
-  box-shadow: 1px 4px 9px 4px rgba(0, 0, 0, 0.47);
+
   img {
-    width: 40%;
+    max-width: 400px;
   }
   #skeleton-pic {
     width: 250px;
     opacity: 0.7;
   }
   article {
+    background-color: ${(props) => props.theme.white};
+    box-shadow: 1px 4px 9px 4px rgba(0, 0, 0, 0.47);
     padding: 6rem 4rem;
+    width: 70%;
     h2 {
       font-size: ${(props) => props.theme.fontSizes[6]};
       margin-bottom: ${(props) => props.theme.spacing[5]};
     }
     span {
       font-size: ${(props) => props.theme.textSize};
+      height: fit-content;
       letter-spacing: 1.5px;
       line-height: ${(props) => props.theme.lineHeight};
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    width: 90vw;
+  }
+  @media only screen and (max-width: 980px) {
+    flex-direction: column;
+    width: fit-content;
+
+    padding-bottom: 50px;
+
+    img,
+    article {
+      margin: 0 auto;
+    }
+
+    article {
+      padding: 3rem 2rem;
+
+      width: 400px;
+      text-align: center;
+      height: fit-content;
+    }
+  }
+
+  @media only screen and (max-width: 410px) {
+    img,
+    article {
+      width: 350px;
     }
   }
 `;

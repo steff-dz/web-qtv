@@ -131,6 +131,7 @@ const ArticleBase = styled.article`
 
   @media only screen and (max-width: 750px) {
     padding: 2rem;
+    width: 100%;
     h2 {
       text-align: center;
     }
