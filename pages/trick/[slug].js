@@ -112,7 +112,6 @@ const SectionBase = styled.section`
   @media only screen and (max-width: 980px) {
     flex-direction: column;
     width: fit-content;
-
     padding-bottom: 50px;
 
     img,

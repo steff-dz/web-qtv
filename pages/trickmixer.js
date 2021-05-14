@@ -166,9 +166,7 @@ const TrickMixer = ({ tricks }) => {
         <NavigationBar />
       </IndexWrapper>
       <MainBase>
-        <PageTitle style={{ marginTop: "7%", fontSize: "6.3rem" }}>
-          Trick Mixer
-        </PageTitle>
+        <StyledPageTitle>Trick Mixer</StyledPageTitle>
         <FormSection>{formToggle ? renderForm() : renderTricks()}</FormSection>
       </MainBase>
     </>
@@ -189,6 +187,10 @@ const ImageContainer = styled.div`
   position: absolute;
   left: 0;
   opacity: 0.5;
+
+  @media only screen and (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
 const MainBase = styled.main`
@@ -198,6 +200,15 @@ const MainBase = styled.main`
   top: 0;
   display: flex;
   flex-direction: column;
+  border: 1px solid green;
+`;
+
+const StyledPageTitle = styled(PageTitle)`
+  margin-top: 7%;
+  font-size: 6.3rem;
+  @media only screen and (max-width: 640px) {
+    margin-top: 15%;
+  }
 `;
 
 const FormSection = styled.section`
@@ -279,15 +290,58 @@ const FormSection = styled.section`
       font-size: 3.8rem;
     }
   }
+
+  @media only screen and (max-width: 950px) {
+    /* font-size: 2rem; */
+
+    #instructions-container,
+    form {
+      padding: 3rem 4rem;
+    }
+
+    button {
+      font-size: 2.5rem;
+      :hover {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    /* flex-direction: column; */
+    width: 100vw;
+    height: 100vh;
+    /* border: 1px solid orange; */
+    justify-content: normal;
+    gap: 65px;
+
+    #instructions-container {
+      /* background-color: rgb(75, 98, 109); */
+      /* border: 1px solid blue; */
+      width: 40vw;
+      margin-left: 30px;
+    }
+
+    form {
+      justify-self: flex-end;
+      width: 40vw;
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    #instructions-container {
+      width: 80vw;
+      margin-left: 0;
+    }
+
+    form {
+      justify-self: normal;
+      width: 80vw;
+    }
+  }
 `;
 
 export default TrickMixer;
-
-{
-  /* <p
-key={el.slug.current}
-onClick={() => router.push(`/trick/${el.slug.current}`)}
->
-<a target="_blank">{el.title}</a>
-</p> */
-}
