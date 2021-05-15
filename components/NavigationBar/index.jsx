@@ -25,7 +25,7 @@ const Nav = styled.nav`
   background-color: ${(props) => props.theme.grey};
   color: white;
   @media only screen and (max-width: 500px) {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 `;
 
