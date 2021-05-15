@@ -16,12 +16,12 @@ export async function getStaticProps() {
   const query = groq`
   {
       "tricks": *[_type == 'tricks']{
-        title, 
+        title,
         slug,
         tags
       }
   }
-  
+
   `;
 
   const data = await client.fetch(query);
@@ -131,6 +131,7 @@ const TrickMixer = ({ tricks }) => {
               selectedLevels={selectedLevels}
             />
           </div>
+
           <button type="submit">
             GO <FontAwesomeIcon size="xs" icon={faArrowRight} />
           </button>
@@ -174,13 +175,12 @@ const TrickMixer = ({ tricks }) => {
 };
 
 const IndexWrapper = styled(Wrapper)`
-  overflow: hidden;
   position: relative;
 `;
 
 const ImageContainer = styled.div`
   background-image: url("/images/rail.jpeg");
-  height: 100%;
+  height: 100vh;
   width: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -200,14 +200,13 @@ const MainBase = styled.main`
   top: 0;
   display: flex;
   flex-direction: column;
-  border: 1px solid green;
 `;
 
 const StyledPageTitle = styled(PageTitle)`
   margin-top: 7%;
   font-size: 6.3rem;
   @media only screen and (max-width: 640px) {
-    margin-top: 15%;
+    margin-top: 17%;
   }
 `;
 
@@ -273,6 +272,10 @@ const FormSection = styled.section`
     flex-direction: column;
     align-items: center;
     padding: 3rem 8rem;
+
+    div {
+      width: fit-content;
+    }
   }
 
   button {
@@ -340,6 +343,13 @@ const FormSection = styled.section`
     form {
       justify-self: normal;
       width: 80vw;
+    }
+  }
+
+  @media only screen and (max-width: 415px) {
+    gap: 50px;
+    form {
+      justify-self: normal;
     }
   }
 `;
