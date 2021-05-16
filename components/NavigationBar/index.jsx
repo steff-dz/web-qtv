@@ -4,11 +4,23 @@ import Burger from "./Burger";
 
 const NavigationBar = () => {
   const router = useRouter();
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      router.push("/");
+    }
+  };
   return (
     <header>
       <Nav>
-        <Logo onClick={() => router.push("/")}>
-          <img src="/images/QTV.png" />
+        <Logo>
+          <img
+            aria-label="link for home page"
+            onClick={() => router.push("/")}
+            onKeyPress={handleKeyPress}
+            tabIndex="0"
+            src="/images/QTV.png"
+            alt="Logo for showing letters QTV"
+          />
         </Logo>
         <Burger />
       </Nav>
@@ -32,12 +44,15 @@ const Nav = styled.nav`
 
 const Logo = styled.span`
   z-index: 8;
+  cursor: pointer;
+  /* &:focus {
+    border: 1px solid white;
+  } */
+
   img {
     padding-top: 0;
     width: 125px;
   }
-
-  cursor: pointer;
 `;
 
 export default NavigationBar;

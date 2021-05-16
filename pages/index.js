@@ -10,15 +10,15 @@ function Home() {
       <Head>
         <title>Quad Tricks Vault</title>
       </Head>
-      <IndexWrapper>
-        <HeroContainer />
+      <IndexWrapper aria-label="Site title, description and navigation">
+        <HeroContainer aria-label="Container holding background image of a woman skating" />
         <MessageContainer>
           QTV is a place to find all the skating tricks on quad skates under the
           sun, from beginner to advanced.
         </MessageContainer>
         <NavigationBar />
 
-        <MainBase>
+        <MainBase aria-role="heading" aria-level="1">
           <div>
             <span>
               <h1>QUAD</h1>
