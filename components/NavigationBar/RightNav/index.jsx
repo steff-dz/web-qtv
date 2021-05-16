@@ -8,21 +8,13 @@ const RightNav = ({ open }) => {
         role="menu"
         aria-label="click one of the links below to navigate to that page"
       >
-        <Link role="menuitem" href="/vault">
-          The Vault
-        </Link>
+        <Link href="/vault">The Vault</Link>
 
-        <Link role="menuitem" href="#">
-          Register
-        </Link>
+        <Link href="#">Register</Link>
 
-        <Link role="menuitem" href="#">
-          Login
-        </Link>
+        <Link href="#">Login</Link>
 
-        <Link role="menuitem" href="/trickmixer">
-          Trick Mixer
-        </Link>
+        <Link href="/trickmixer">Trick Mixer</Link>
       </div>
     </BurgerMenu>
   );

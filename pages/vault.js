@@ -1,13 +1,11 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import client from "../client";
+import groq from "groq";
 import NavigationBar from "../components/NavigationBar";
 import { Wrapper } from "../components/Wrapper";
 import { PageTitle } from "../components/PageTitle";
-
-import groq from "groq";
-
-import { useRouter } from "next/router";
 
 export async function getStaticProps() {
   const query = groq`
@@ -36,9 +34,16 @@ const Vault = ({ tricks }) => {
 
   function renderTricks() {
     return tricksData.map((el, index) => (
-      <h3 key={index} onClick={() => router.push(`/trick/${el.slug.current}`)}>
+      <li
+        key={index}
+        role="listitem"
+        aria-label="click to get trick details page"
+        tabIndex="0"
+        onKeyPress={(e) => handleKeyPress(e, "trick", el)}
+        onClick={() => router.push(`/trick/${el.slug.current}`)}
+      >
         {el.title}
-      </h3>
+      </li>
     ));
   }
 
@@ -49,24 +54,59 @@ const Vault = ({ tricks }) => {
     );
   }
 
+  const handleKeyPress = (e, type, element) => {
+    console.log(type);
+    if (e.key === "Enter" && type === "menu") {
+      filterTricks(e);
+    } else if (e.key === "Enter" && type === "trick") {
+      router.push(`/trick/${element.slug.current}`);
+    }
+  };
+
   return (
-    <Wrapper aria-hidden="true">
+    <Wrapper role="banner">
       <NavigationBar />
       <PageTitle>The Vault of Tricks</PageTitle>
-      <SectionBase>
-        <OptionContainer>
-          <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
-          <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
-          <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
-        </OptionContainer>
-        <ArticleBase>
-          {tricksData ? (
-            renderTricks()
-          ) : (
-            <p>Select a level from above to check out a list of tricks</p>
-          )}
-        </ArticleBase>
-      </SectionBase>
+      <main>
+        <SectionBase>
+          <OptionContainer role="menu">
+            <h2
+              role="menuitem"
+              tabIndex="0"
+              onKeyPress={(e) => handleKeyPress(e, "menu")}
+              onClick={(e) => filterTricks(e)}
+              aria-label="click to filter between trick levels"
+            >
+              Beginner
+            </h2>
+            <h2
+              role="menuitem"
+              tabIndex="0"
+              onKeyPress={(e) => handleKeyPress(e, "menu")}
+              onClick={(e) => filterTricks(e)}
+              aria-label="click to filter between trick levels"
+            >
+              Intermediate
+            </h2>
+            <h2
+              role="menuitem"
+              tabIndex="0"
+              onKeyPress={(e) => handleKeyPress(e, "menu")}
+              onClick={(e) => filterTricks(e)}
+              aria-label="click to filter between trick levels"
+            >
+              Advanced
+            </h2>
+          </OptionContainer>
+          <ListBase>
+            {tricksData ? (
+              renderTricks()
+            ) : (
+              <p>Select a level from above to check out a list of tricks</p>
+            )}
+          </ListBase>
+        </SectionBase>
+      </main>
     </Wrapper>
   );
 };
@@ -79,7 +119,8 @@ const SectionBase = styled.section`
   align-items: center;
 `;
 
-const ArticleBase = styled.article`
+const ListBase = styled.ul`
+  list-style: none;
   margin-top: ${(props) => props.theme.spacing[5]};
   background-color: rgb(14, 17, 17, 0.2);
   border-radius: 15px;
@@ -98,24 +139,27 @@ const ArticleBase = styled.article`
     }
   }
 
-  h3 {
+  li {
     font-size: ${(props) => props.theme.textSize};
     color: ${(props) => props.theme.teal};
     font-family: ${(props) => props.theme.textFont};
     cursor: pointer;
+    @media only screen and (max-width: 750px) {
+      font-size: 2rem;
+    }
 
     :nth-child(even) {
       padding-top: ${(props) => props.theme.spacing[2]};
       @media only screen and (max-width: 750px) {
         padding: 0;
-        font-size: 2rem;
+        font-size: 2.3rem;
       }
     }
     :nth-child(odd) {
       color: ${(props) => props.theme.green};
       font-size: ${(props) => props.theme.fontSizes[6]};
       @media only screen and (max-width: 750px) {
-        font-size: 2rem;
+        font-size: 2.3rem;
       }
     }
     &:hover {
@@ -126,7 +170,7 @@ const ArticleBase = styled.article`
   @media only screen and (max-width: 750px) {
     padding: 2rem;
     width: 100%;
-    h2 {
+    li {
       text-align: center;
     }
   }
