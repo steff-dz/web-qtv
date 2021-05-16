@@ -162,10 +162,10 @@ const TrickMixer = ({ tricks }) => {
 
   return (
     <>
-      <IndexWrapper>
+      <Wrapper>
         <ImageContainer />
         <NavigationBar />
-      </IndexWrapper>
+      </Wrapper>
       <MainBase>
         <StyledPageTitle>Trick Mixer</StyledPageTitle>
         <FormSection>{formToggle ? renderForm() : renderTricks()}</FormSection>
@@ -173,10 +173,6 @@ const TrickMixer = ({ tricks }) => {
     </>
   );
 };
-
-const IndexWrapper = styled(Wrapper)`
-  position: relative;
-`;
 
 const ImageContainer = styled.div`
   background-image: url("/images/rail.jpeg");

@@ -1,9 +1,12 @@
-import client from "../client";
-import styled from "styled-components";
-import NavigationBar from "../components/NavigationBar";
 import { useState } from "react";
-import groq from "groq";
+import styled from "styled-components";
+import client from "../client";
+import NavigationBar from "../components/NavigationBar";
+import { Wrapper } from "../components/Wrapper";
 import { PageTitle } from "../components/PageTitle";
+
+import groq from "groq";
+
 import { useRouter } from "next/router";
 
 export async function getStaticProps() {
@@ -47,35 +50,26 @@ const Vault = ({ tricks }) => {
   }
 
   return (
-    <>
-      <Wrapper>
-        <NavigationBar />
-
-        <main>
-          <PageTitle>The Vault of Tricks</PageTitle>
-          <SectionBase>
-            <OptionContainer>
-              <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
-              <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
-              <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
-            </OptionContainer>
-            <ArticleBase>
-              {tricksData ? (
-                renderTricks()
-              ) : (
-                <p>Select a level from above to check out a list of tricks</p>
-              )}
-            </ArticleBase>
-          </SectionBase>
-        </main>
-      </Wrapper>
-    </>
+    <Wrapper aria-hidden="true">
+      <NavigationBar />
+      <PageTitle>The Vault of Tricks</PageTitle>
+      <SectionBase>
+        <OptionContainer>
+          <h2 onClick={(e) => filterTricks(e)}>Beginner</h2>
+          <h2 onClick={(e) => filterTricks(e)}>Intermediate</h2>
+          <h2 onClick={(e) => filterTricks(e)}>Advanced</h2>
+        </OptionContainer>
+        <ArticleBase>
+          {tricksData ? (
+            renderTricks()
+          ) : (
+            <p>Select a level from above to check out a list of tricks</p>
+          )}
+        </ArticleBase>
+      </SectionBase>
+    </Wrapper>
   );
 };
-const Wrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-`;
 
 const SectionBase = styled.section`
   margin: 0 auto;

@@ -44,9 +44,9 @@ const TrickPage = ({ trick }) => {
 
   return (
     <>
-      <StyledWrapper>
+      <Wrapper>
         <NavigationBar />
-        <MainBase>
+        <main>
           <PageTitle>{trick && trick.title}</PageTitle>
           <SectionBase>
             {trick.image ? (
@@ -61,21 +61,11 @@ const TrickPage = ({ trick }) => {
               </span>
             </article>
           </SectionBase>
-        </MainBase>
-      </StyledWrapper>
+        </main>
+      </Wrapper>
     </>
   );
 };
-const StyledWrapper = styled(Wrapper)`
-  position: relative;
-  min-height: 100vh;
-  @media only screen and (max-width: 400px) {
-    overflow: scroll;
-    overflow-x: hidden;
-  }
-`;
-
-const MainBase = styled.main``;
 
 const SectionBase = styled.section`
   display: flex;
@@ -136,4 +126,3 @@ const SectionBase = styled.section`
   }
 `;
 export default TrickPage;
-/* <img src={trick.image?.asset?.url} /> */

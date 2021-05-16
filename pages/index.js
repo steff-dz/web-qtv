@@ -38,7 +38,6 @@ function Home() {
 
 const IndexWrapper = styled(Wrapper)`
   overflow: hidden;
-  position: relative;
 `;
 
 const HeroContainer = styled.div`

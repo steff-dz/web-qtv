@@ -18,21 +18,22 @@ const NavigationBar = () => {
 
 const Nav = styled.nav`
   width: 100vw;
-  padding: 0 ${(props) => props.theme.spacing[5]};
+  padding: 1rem ${(props) => props.theme.spacing[5]};
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: ${(props) => props.theme.grey};
   color: white;
+
   @media only screen and (max-width: 500px) {
-    padding: 0 1rem;
+    padding: 1rem 2rem;
   }
 `;
 
 const Logo = styled.span`
   z-index: 8;
   img {
-    padding-top: ${(props) => props.theme.spacing[4]};
+    padding-top: 0;
     width: 125px;
   }
 
