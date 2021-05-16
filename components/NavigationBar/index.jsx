@@ -9,9 +9,10 @@ const NavigationBar = () => {
       router.push("/");
     }
   };
+
   return (
     <header>
-      <Nav>
+      <Nav role="navigation">
         <Logo>
           <img
             aria-label="link for home page"
@@ -45,10 +46,6 @@ const Nav = styled.nav`
 const Logo = styled.span`
   z-index: 8;
   cursor: pointer;
-  /* &:focus {
-    border: 1px solid white;
-  } */
-
   img {
     padding-top: 0;
     width: 125px;

@@ -4,11 +4,25 @@ import styled from "styled-components";
 const RightNav = ({ open }) => {
   return (
     <BurgerMenu open={open}>
-      <div>
-        <Link href="/vault">The Vault</Link>
-        <Link href="#">Register</Link>
-        <Link href="#">Login</Link>
-        <Link href="/trickmixer">Trick Mixer</Link>
+      <div
+        role="menu"
+        aria-label="click one of the links below to navigate to that page"
+      >
+        <Link role="menuitem" href="/vault">
+          The Vault
+        </Link>
+
+        <Link role="menuitem" href="#">
+          Register
+        </Link>
+
+        <Link role="menuitem" href="#">
+          Login
+        </Link>
+
+        <Link role="menuitem" href="/trickmixer">
+          Trick Mixer
+        </Link>
       </div>
     </BurgerMenu>
   );

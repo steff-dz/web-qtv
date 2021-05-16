@@ -1,7 +1,6 @@
 import Head from "next/head";
 import styled from "styled-components";
 import { Wrapper } from "../components/Wrapper";
-import Image from "next/image";
 import NavigationBar from "../components/NavigationBar";
 
 function Home() {
@@ -18,7 +17,7 @@ function Home() {
         </MessageContainer>
         <NavigationBar />
 
-        <MainBase aria-role="heading" aria-level="1">
+        <MainBase role="heading" aria-level="1">
           <div>
             <span>
               <h1>QUAD</h1>
@@ -109,7 +108,6 @@ const MainBase = styled.main`
 
   @media only screen and (max-width: 850px) {
     width: 100%;
-    /* margin-top: 20vh; */
     div {
       align-items: flex-end;
     }
@@ -141,8 +139,6 @@ const MessageContainer = styled.p`
 
   @media only screen and (max-width: 980px) {
     width: 50vw;
-    /* padding: 2rem; */
-    /* text-align: center; */
   }
 
   @media only screen and (max-width: 570px) {

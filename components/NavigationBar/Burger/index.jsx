@@ -4,9 +4,21 @@ import styled from "styled-components";
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      setOpen(!open);
+    }
+  };
   return (
     <>
-      <StyledBurger open={open} onClick={() => setOpen(!open)}>
+      <StyledBurger
+        role="button"
+        aria-label="click to open the menu"
+        tabIndex="0"
+        open={open}
+        onKeyPress={handleKeyPress}
+        onClick={() => setOpen(!open)}
+      >
         <div />
         <div />
         <div />
