@@ -57,7 +57,7 @@ const TrickPage = ({ trick }) => {
             ) : (
               <img id="skeleton-pic" src="/images/skates.jpeg" />
             )}
-            <article>
+            <article aria-label="Description and information about the trick">
               <h2>Description</h2>
               <span>
                 {trick && <BlockContent id="descrip" blocks={trick.body} />}
