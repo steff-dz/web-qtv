@@ -6,6 +6,7 @@ import { Wrapper } from "../../components/Wrapper";
 import { PageTitle } from "../../components/PageTitle";
 import styled from "styled-components";
 
+//for dynamic routing---------------
 export function getStaticPaths() {
   return {
     paths: [],
@@ -13,6 +14,7 @@ export function getStaticPaths() {
   };
 }
 
+//getting props from sanity---------
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const query = groq`
@@ -38,6 +40,7 @@ export async function getStaticProps({ params }) {
 }
 
 const TrickPage = ({ trick }) => {
+  //making sure the trick data is here, otherwise return nothing-----
   if (trick === undefined) {
     return null;
   }

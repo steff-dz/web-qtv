@@ -7,6 +7,7 @@ import NavigationBar from "../components/NavigationBar";
 import { Wrapper } from "../components/Wrapper";
 import { PageTitle } from "../components/PageTitle";
 
+//getting props from sanity studio-------------------
 export async function getStaticProps() {
   const query = groq`
     {
@@ -55,7 +56,6 @@ const Vault = ({ tricks }) => {
   }
 
   const handleKeyPress = (e, type, element) => {
-    console.log(type);
     if (e.key === "Enter" && type === "menu") {
       filterTricks(e);
     } else if (e.key === "Enter" && type === "trick") {

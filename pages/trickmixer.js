@@ -10,7 +10,7 @@ import Input from "../components/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-//try and export this to another file since you are using this on two pages
+//getting props from sanity-------------
 export async function getStaticProps() {
   const query = groq`
   {
@@ -43,6 +43,7 @@ const TrickMixer = ({ tricks }) => {
     }
   }, [trickData]);
 
+  //function to handle input change---------------
   const handleInput = (e) => {
     const choice = e;
     const exists = selectedLevels.find((e) => e === choice);
