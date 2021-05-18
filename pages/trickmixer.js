@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import client from "../client";
+import groq from "groq";
+import Link from "next/link";
 import NavigationBar from "../components/NavigationBar";
 import { Wrapper } from "../components/Wrapper";
 import { PageTitle } from "../components/PageTitle";
 import Input from "../components/Input";
-import client from "../client";
-import groq from "groq";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 //try and export this to another file since you are using this on two pages
 export async function getStaticProps() {
@@ -37,7 +36,6 @@ const TrickMixer = ({ tricks }) => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [trickData, setTrickData] = useState();
   const [formToggle, setFormToggle] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     if (trickData) {
@@ -46,7 +44,7 @@ const TrickMixer = ({ tricks }) => {
   }, [trickData]);
 
   const handleInput = (e) => {
-    const choice = e.target.value;
+    const choice = e;
     const exists = selectedLevels.find((e) => e === choice);
     if (exists) {
       setSelectedLevels(selectedLevels.filter((el) => el !== choice));
@@ -101,7 +99,7 @@ const TrickMixer = ({ tricks }) => {
           </p>
         </article>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div>
+          <div aria-label="Click one of the checkboxes below to select a level of tricks to see">
             <Input
               type={"checkbox"}
               id={"beginnerLvl"}
@@ -143,13 +141,22 @@ const TrickMixer = ({ tricks }) => {
   function renderTricks() {
     return (
       <>
-        <article id="trick-container">
+        <article id="trick-container" role="list">
           {trickData.map((el) => (
             <Link key={el.slug.current} href={`/trick/${el.slug.current}`}>
-              <a target="_blank">{el.title}</a>
+              <a
+                aria-label="Click to go to individual trick page"
+                role="listitem"
+                target="_blank"
+              >
+                {el.title}
+              </a>
             </Link>
           ))}
-          <button onClick={() => setFormToggle(!formToggle)}>
+          <button
+            aria-label="click to return to the form"
+            onClick={() => setFormToggle(!formToggle)}
+          >
             <span>
               <FontAwesomeIcon size="xs" icon={faArrowLeft} />
             </span>

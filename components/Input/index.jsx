@@ -12,6 +12,11 @@ const Input = ({
   selectedLevels,
 }) => {
   const checkmark = <FontAwesomeIcon icon={faCheck} />;
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleInput(e.target.dataset.value);
+    }
+  };
 
   return (
     <InputContainer>
@@ -20,14 +25,21 @@ const Input = ({
       ) : (
         ""
       )}
-      <label htmlFor={id}>{title}</label>
-      <input
-        type={type}
-        id={id}
-        name={name}
-        value={value}
-        onChange={(e) => handleInput(e)}
-      />
+      <label
+        tabIndex="0"
+        htmlFor={id}
+        data-value={value}
+        onKeyDown={(e) => handleKeyPress(e)}
+      >
+        {title}
+        <input
+          type={type}
+          id={id}
+          name={name}
+          value={value}
+          onChange={(e) => handleInput(e.target.value)}
+        />
+      </label>
     </InputContainer>
   );
 };
@@ -42,13 +54,16 @@ const InputContainer = styled.div`
   label {
     cursor: pointer;
     text-align: left;
+    :focus {
+      outline: 1px solid black;
+    }
 
     :hover {
       font-weight: 200;
     }
   }
   input {
-    opacity: 0;
+    visibility: hidden;
   }
 `;
 

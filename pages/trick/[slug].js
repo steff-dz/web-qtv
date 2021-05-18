@@ -50,7 +50,10 @@ const TrickPage = ({ trick }) => {
           <PageTitle>{trick && trick.title}</PageTitle>
           <SectionBase>
             {trick.image ? (
-              <img src={trick.image.asset.url} />
+              <img
+                src={trick.image.asset.url}
+                alt={`image of ${trick.title}`}
+              />
             ) : (
               <img id="skeleton-pic" src="/images/skates.jpeg" />
             )}
