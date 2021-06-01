@@ -65,6 +65,10 @@ const InputContainer = styled.div`
   input {
     visibility: hidden;
   }
+
+  @media only screen and (max-width: 415px) {
+    font-size: 2rem;
+  }
 `;
 
 export default Input;

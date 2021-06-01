@@ -10,6 +10,6 @@ export const PageTitle = styled.h1`
   margin-bottom: 2rem;
   margin-top: 2%;
   @media only screen and (max-width: 800px) {
-    font-size: 5rem;
+    font-size: 4.5rem;
   }
 `;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import styled from "styled-components";
 import client from "../client";
 import groq from "groq";
@@ -35,16 +36,14 @@ const Vault = ({ tricks }) => {
 
   function renderTricks() {
     return tricksData.map((el, index) => (
-      <li
+      <Link
         key={index}
         role="listitem"
         aria-label="click to get trick details page"
-        tabIndex="0"
-        onKeyPress={(e) => handleKeyPress(e, "trick", el)}
-        onClick={() => router.push(`/trick/${el.slug.current}`)}
+        href={`/trick/${el.slug.current}`}
       >
         {el.title}
-      </li>
+      </Link>
     ));
   }
 
@@ -70,41 +69,38 @@ const Vault = ({ tricks }) => {
       <main>
         <SectionBase>
           <OptionContainer role="menu">
-            <h2
-              role="menuitem"
-              tabIndex="0"
+            <button
+              className="option-button"
               onKeyPress={(e) => handleKeyPress(e, "menu")}
               onClick={(e) => filterTricks(e)}
               aria-label="click to filter between trick levels"
             >
               Beginner
-            </h2>
-            <h2
-              role="menuitem"
-              tabIndex="0"
+            </button>
+            <button
+              className="option-button"
               onKeyPress={(e) => handleKeyPress(e, "menu")}
               onClick={(e) => filterTricks(e)}
               aria-label="click to filter between trick levels"
             >
               Intermediate
-            </h2>
-            <h2
-              role="menuitem"
-              tabIndex="0"
+            </button>
+            <button
+              className="option-button"
               onKeyPress={(e) => handleKeyPress(e, "menu")}
               onClick={(e) => filterTricks(e)}
               aria-label="click to filter between trick levels"
             >
               Advanced
-            </h2>
+            </button>
           </OptionContainer>
-          <ListBase>
+          <ArticleBase>
             {tricksData ? (
               renderTricks()
             ) : (
               <p>Select a level from above to check out a list of tricks</p>
             )}
-          </ListBase>
+          </ArticleBase>
         </SectionBase>
       </main>
     </Wrapper>
@@ -119,8 +115,7 @@ const SectionBase = styled.section`
   align-items: center;
 `;
 
-const ListBase = styled.ul`
-  list-style: none;
+const ArticleBase = styled.article`
   margin-top: ${(props) => props.theme.spacing[5]};
   background-color: rgb(14, 17, 17, 0.2);
   border-radius: 15px;
@@ -139,11 +134,13 @@ const ListBase = styled.ul`
     }
   }
 
-  li {
+  a {
     font-size: ${(props) => props.theme.textSize};
     color: ${(props) => props.theme.teal};
     font-family: ${(props) => props.theme.textFont};
     cursor: pointer;
+    text-decoration: none;
+
     @media only screen and (max-width: 750px) {
       font-size: 2rem;
     }
@@ -182,12 +179,14 @@ const OptionContainer = styled.div`
   justify-content: center;
   gap: ${(props) => props.theme.spacing[6]};
 
-  h2 {
+  .option-button {
     font-size: ${(props) => props.theme.fontSizes[6]};
     font-family: ${(props) => props.theme.textFont};
     color: ${(props) => props.theme.black};
     font-weight: 400;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
     &:hover {
       opacity: 0.5;
     }

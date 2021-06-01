@@ -208,7 +208,7 @@ const MainBase = styled.main`
 
 const StyledPageTitle = styled(PageTitle)`
   margin-top: 7%;
-  font-size: 6.3rem;
+  font-size: 4.5rem;
   @media only screen and (max-width: 640px) {
     margin-top: 17%;
   }
@@ -299,8 +299,6 @@ const FormSection = styled.section`
   }
 
   @media only screen and (max-width: 950px) {
-    /* font-size: 2rem; */
-
     #instructions-container,
     form {
       padding: 3rem 4rem;
@@ -315,16 +313,12 @@ const FormSection = styled.section`
   }
 
   @media only screen and (max-width: 750px) {
-    /* flex-direction: column; */
     width: 100vw;
     height: 100vh;
-    /* border: 1px solid orange; */
     justify-content: normal;
     gap: 65px;
 
     #instructions-container {
-      /* background-color: rgb(75, 98, 109); */
-      /* border: 1px solid blue; */
       width: 40vw;
       margin-left: 30px;
     }
@@ -354,6 +348,8 @@ const FormSection = styled.section`
     gap: 50px;
     form {
       justify-self: normal;
+
+      margin-bottom: 30px;
     }
   }
 `;
